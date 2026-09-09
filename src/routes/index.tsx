@@ -268,14 +268,24 @@ function Index() {
           </div>
           <div className="lg:col-span-9">
             <p className="font-display text-2xl sm:text-3xl font-medium leading-tight tracking-tight text-balance max-w-[40ch]">
-              Seeking an entry-level role in AI engineering, Python or software development — turning
-              data into AI systems that actually run.
+              Looking for a front-end developer role — building React interfaces people can actually
+              use, with AI and Python behind them.
             </p>
             <p className="mt-4 text-base text-ink/70 text-pretty max-w-[60ch]">
-              B.Tech Information Technology student with skills in Python development, machine
-              learning, prompt engineering and web development. Interested in AI, automation and
-              scalable application development.
+              B.Tech Information Technology student. I write component-driven React, responsive CSS
+              and API-connected dashboards, and I understand the back end I'm consuming: Django REST,
+              MySQL and machine-learning services I've built myself.
             </p>
+            <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3">
+              {projectStats.map((s) => (
+                <div key={s.k} className="bg-paper-dim rounded-[min(1vw,12px)] ring-1 ring-black/5 p-4">
+                  <p className="font-display text-2xl font-semibold tracking-tight">{s.k}</p>
+                  <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-ink/50 mt-1">
+                    {s.v}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -304,6 +314,53 @@ function Index() {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </div>
+
+      {/* FRONT-END CRAFT */}
+      <div id="frontend" className="border-b border-ink/10">
+        <div className="mx-auto max-w-6xl px-5 sm:px-8 py-14">
+          <div className="flex items-baseline justify-between mb-8">
+            <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-ink/50">
+              02b — Front-end craft
+            </p>
+            <span className="font-mono text-[11px] text-ink/40">how I build UI</span>
+          </div>
+
+          <div className="grid lg:grid-cols-12 gap-8">
+            <div className="lg:col-span-5">
+              <div className="space-y-4">
+                {frontendBars.map((b) => (
+                  <div key={b.label}>
+                    <div className="flex items-baseline justify-between font-mono text-[11px] text-ink/60">
+                      <span>{b.label}</span>
+                      <span>{b.pct}%</span>
+                    </div>
+                    <div className="mt-1.5 h-2 rounded-full bg-ink/10 overflow-hidden">
+                      <div className="h-full rounded-full bg-brand" style={{ width: `${b.pct}%` }} />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="lg:col-span-7 grid sm:grid-cols-2 gap-4">
+              {buildPrinciples.map((p) => (
+                <div key={p.n} className="bg-paper-dim rounded-[min(1vw,12px)] ring-1 ring-black/5 p-5">
+                  <p className="font-mono text-[11px] text-brand">{p.n}</p>
+                  <p className="font-display font-semibold text-base mt-1">{p.t}</p>
+                  <p className="text-sm text-ink/65 mt-2 text-pretty">{p.d}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-8 bg-ink text-paper rounded-[min(1.2vw,16px)] p-6">
+            <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-paper/50 mb-4">
+              Component tree — SMART-GRIEV front end
+            </p>
+            <ComponentTreeDiagram />
           </div>
         </div>
       </div>
