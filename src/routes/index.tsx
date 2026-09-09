@@ -1,5 +1,19 @@
 import { createFileRoute } from "@tanstack/react-router";
 import smartGriev from "@/assets/smart-griev.jpg";
+import resumeAsset from "@/assets/resume.pdf.asset.json";
+import sgLanding from "@/assets/sg-landing.png.asset.json";
+import sgAdmin from "@/assets/sg-admin.png.asset.json";
+import sgSubmit from "@/assets/sg-submit.png.asset.json";
+import sgDetail from "@/assets/sg-detail.png.asset.json";
+
+const GITHUB_URL = "https://github.com/teja1101/smartgrieve";
+
+const shots = [
+  { src: sgLanding.url, alt: "Smart Griev landing page with role-based sign in portal", cap: "Landing + role sign-in" },
+  { src: sgAdmin.url, alt: "Admin dashboard with complaint counts, department distribution and weekly trends", cap: "Admin analytics dashboard" },
+  { src: sgSubmit.url, alt: "Citizen complaint submission form with AI analysis enabled", cap: "Citizen complaint form" },
+  { src: sgDetail.url, alt: "Complaint detail view showing status, department routing and AI confidence score", cap: "AI routing + confidence" },
+];
 
 export const Route = createFileRoute("/")({
   head: () => ({
