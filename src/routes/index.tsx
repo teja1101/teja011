@@ -5,6 +5,7 @@ import sgLanding from "@/assets/sg-landing.png.asset.json";
 import sgAdmin from "@/assets/sg-admin.png.asset.json";
 import sgSubmit from "@/assets/sg-submit.png.asset.json";
 import sgDetail from "@/assets/sg-detail.png.asset.json";
+import { ArchitectureDiagram, PipelineDiagram, ComponentTreeDiagram } from "@/components/diagrams";
 
 const GITHUB_URL = "https://github.com/teja1101/smartgrieve";
 
@@ -18,17 +19,17 @@ const shots = [
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Gudavalli Prabhu Teja — AI & Python Developer" },
+      { title: "Gudavalli Prabhu Teja — Front-End React & AI Developer" },
       {
         name: "description",
         content:
-          "Portfolio of Gudavalli Prabhu Teja, B.Tech IT student working in Python, machine learning and prompt engineering. Projects, internship, skills and contact.",
+          "Portfolio of Gudavalli Prabhu Teja — front-end developer building React interfaces, plus Python, machine learning and prompt engineering. Projects, diagrams, skills and contact.",
       },
-      { property: "og:title", content: "Gudavalli Prabhu Teja — AI & Python Developer" },
+      { property: "og:title", content: "Gudavalli Prabhu Teja — Front-End React & AI Developer" },
       {
         property: "og:description",
         content:
-          "Python, machine learning and prompt engineering portfolio: SMART-GRIEV project, Techverra internship, skills and certifications.",
+          "React front-end work, the SMART-GRIEV case study with architecture diagrams, Techverra internship, skills and certifications.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -39,6 +40,17 @@ export const Route = createFileRoute("/")({
 
 const skillGroups = [
   {
+    title: "Front-End",
+    sub: "react · ui engineering",
+    tags: [
+      { label: "React.js", accent: true },
+      { label: "JavaScript ES6+", accent: false },
+      { label: "HTML5 / CSS3", accent: false },
+      { label: "Responsive UI", accent: false },
+      { label: "REST APIs", accent: false },
+    ],
+  },
+  {
     title: "Python",
     sub: "core · scripting",
     tags: [
@@ -48,12 +60,12 @@ const skillGroups = [
     ],
   },
   {
-    title: "Web Stack",
-    sub: "HTML · CSS · SQL",
+    title: "Back-End & Data",
+    sub: "django · sql",
     tags: [
-      { label: "HTML/CSS", accent: false },
+      { label: "Django", accent: false },
       { label: "MySQL", accent: false },
-      { label: "React.js", accent: false },
+      { label: "JWT Auth", accent: false },
     ],
   },
   {
@@ -62,8 +74,54 @@ const skillGroups = [
     tags: [
       { label: "Prompt Eng.", accent: true },
       { label: "Gemini API", accent: false },
-      { label: "MS Office", accent: false },
+      { label: "Git / GitHub", accent: false },
     ],
+  },
+];
+
+const frontendBars = [
+  { label: "React components & hooks", pct: 88 },
+  { label: "Responsive CSS / layout", pct: 85 },
+  { label: "State & data fetching", pct: 78 },
+  { label: "UI accessibility basics", pct: 72 },
+  { label: "Charts & data visualisation", pct: 75 },
+];
+
+const buildPrinciples = [
+  { n: "01", t: "Component-first", d: "Small, reusable pieces with clear props instead of one giant page file." },
+  { n: "02", t: "Mobile-first CSS", d: "Layouts start at 360px and scale up with fluid grid and clamp-based type." },
+  { n: "03", t: "Real API state", d: "Loading, empty and error states designed alongside the happy path." },
+  { n: "04", t: "Fast by default", d: "Lazy images, code-split routes and no blocking work on first paint." },
+];
+
+const projectFeatures = [
+  { icon: "◆", t: "Role-based portals", d: "Separate citizen, officer and admin dashboards behind one auth layer." },
+  { icon: "▲", t: "AI complaint triage", d: "Text is classified into a department with a confidence score before a human sees it." },
+  { icon: "●", t: "Priority scoring", d: "Urgency inferred from wording and category, so critical issues surface first." },
+  { icon: "■", t: "Live status timeline", d: "Every state change is logged and shown back to the citizen who filed it." },
+  { icon: "◇", t: "Analytics dashboard", d: "Counts, department distribution and weekly trend charts for administrators." },
+  { icon: "✦", t: "Secure by design", d: "JWT sessions, guarded routes and server-side permission checks per role." },
+];
+
+const projectStats = [
+  { k: "92.4%", v: "classification accuracy" },
+  { k: "6", v: "departments routed" },
+  { k: "3", v: "user roles" },
+  { k: "<2s", v: "complaint to routing" },
+];
+
+const challenges = [
+  {
+    t: "Messy, informal complaint text",
+    d: "Citizens write in mixed language and slang. Cleaning, lemmatising and TF-IDF vectorising the text lifted classification accuracy well above the first naive model.",
+  },
+  {
+    t: "Keeping the UI honest about AI",
+    d: "Instead of hiding the model, the interface shows the predicted department with its confidence, and lets an officer override it in one click.",
+  },
+  {
+    t: "Dashboards that stay fast",
+    d: "Tables are paginated and filtered server-side, charts render from pre-aggregated counts, so the admin view stays responsive as complaints grow.",
   },
 ];
 
