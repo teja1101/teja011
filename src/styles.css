@@ -19,6 +19,14 @@
  */
 
 @theme inline {
+  --font-display: "Space Grotesk", sans-serif;
+  --font-mono: "Space Mono", monospace;
+  --color-ink: var(--ink);
+  --color-paper: var(--paper);
+  --color-paper-dim: var(--paper-dim);
+  --color-brand: var(--brand);
+  --color-lime: var(--lime);
+
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -63,8 +71,14 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.129 0.042 264.695);
+  --ink: oklch(0.203 0.012 268);
+  --paper: oklch(0.951 0.014 89);
+  --paper-dim: oklch(0.913 0.017 88);
+  --brand: oklch(0.575 0.204 262);
+  --lime: oklch(0.891 0.199 118);
+  --background: var(--paper);
+  --foreground: var(--ink);
+
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.129 0.042 264.695);
   --popover: oklch(1 0 0);

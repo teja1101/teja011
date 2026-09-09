@@ -1,24 +1,336 @@
 import { createFileRoute } from "@tanstack/react-router";
+import smartGriev from "@/assets/smart-griev.jpg";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "Gudavalli Prabhu Teja — AI & Python Developer" },
+      {
+        name: "description",
+        content:
+          "Portfolio of Gudavalli Prabhu Teja, B.Tech IT student working in Python, machine learning and prompt engineering. Projects, internship, skills and contact.",
+      },
+      { property: "og:title", content: "Gudavalli Prabhu Teja — AI & Python Developer" },
+      {
+        property: "og:description",
+        content:
+          "Python, machine learning and prompt engineering portfolio: SMART-GRIEV project, Techverra internship, skills and certifications.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
+const skillGroups = [
+  {
+    title: "Python",
+    sub: "core · scripting",
+    tags: [
+      { label: "Python", accent: false },
+      { label: "Machine Learning", accent: false },
+      { label: "Data Preprocessing", accent: false },
+    ],
+  },
+  {
+    title: "Web Stack",
+    sub: "HTML · CSS · SQL",
+    tags: [
+      { label: "HTML/CSS", accent: false },
+      { label: "MySQL", accent: false },
+      { label: "React.js", accent: false },
+    ],
+  },
+  {
+    title: "AI & Tooling",
+    sub: "prompt · office",
+    tags: [
+      { label: "Prompt Eng.", accent: true },
+      { label: "Gemini API", accent: false },
+      { label: "MS Office", accent: false },
+    ],
+  },
+];
+
+const education = [
+  { years: "2022–26", title: "B.Tech — CSE / Information Technology", note: "Usha Rama College of Engineering and Technology" },
+  { years: "2020–22", title: "Intermediate — Board of Intermediate Education AP", note: "Sri Chaitanya Junior College, Vijayawada · 60%" },
+  { years: "2019–20", title: "Secondary — Board of Secondary Education AP", note: "V.S St John's HR. Sec. School · 78%" },
+];
+
+const certifications = [
+  "NPTEL — Introduction to Internet of Things",
+  "HP LIFE — Data Science and Analytics",
+  "IBM SkillsBuild — Web Development Fundamentals",
+  "EduSkills — Cloud Virtual Internship",
+  "TCS iON IT — 66.8%",
+];
+
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <div className="min-h-screen bg-paper text-ink font-sans">
+      {/* NAV */}
+      <div className="border-b border-ink/10">
+        <div className="mx-auto max-w-6xl px-5 sm:px-8 py-4 flex items-center justify-between">
+          <span className="font-display text-lg font-semibold tracking-tight">
+            GPT<span className="text-brand">.</span>
+          </span>
+          <nav className="font-mono text-[11px] uppercase tracking-[0.18em] hidden md:flex gap-6">
+            <a href="#work" className="hover:text-brand transition-colors">Work</a>
+            <a href="#skills" className="hover:text-brand transition-colors">Skills</a>
+            <a href="#exp" className="hover:text-brand transition-colors">Experience</a>
+            <a href="#contact" className="hover:text-brand transition-colors">Contact</a>
+          </nav>
+          <a
+            href="mailto:pteja0960@gmail.com"
+            className="font-mono text-[11px] uppercase tracking-[0.18em] bg-ink text-paper px-3 py-2 rounded-[min(1vw,12px)] hover:bg-brand transition-colors"
+          >
+            Hire me
+          </a>
+        </div>
+      </div>
+
+      {/* HERO */}
+      <div className="border-b border-ink/10">
+        <div className="mx-auto max-w-6xl px-5 sm:px-8 py-14 sm:py-20 grid lg:grid-cols-12 gap-10">
+          <div className="lg:col-span-7">
+            <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-ink/50 mb-5">
+              B.Tech IT · AI &amp; Python Developer
+            </p>
+            <h1 className="font-display text-5xl sm:text-6xl xl:text-7xl font-semibold leading-none tracking-tight text-balance max-w-[20ch]">
+              Gudavalli Prabhu Teja
+            </h1>
+            <p className="mt-6 text-base sm:text-lg text-ink/70 text-pretty max-w-[52ch]">
+              I build machine-learning models, Python tooling, and prompt-driven AI systems.
+              Currently sharpening ML and prompt engineering on real projects.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3 items-center">
+              <a
+                href="mailto:pteja0960@gmail.com"
+                className="inline-flex items-center gap-2 bg-brand text-paper py-2 pr-4 pl-3 rounded-[min(1vw,12px)] text-sm font-medium hover:bg-ink transition-colors"
+              >
+                <span className="font-mono text-xs">✉</span> pteja0960@gmail.com
+              </a>
+              <a
+                href="tel:8247475257"
+                className="inline-flex items-center gap-2 py-2 pr-4 pl-3 rounded-[min(1vw,12px)] text-sm font-medium ring-1 ring-ink/20 hover:ring-ink transition-colors"
+              >
+                <span className="font-mono text-xs">✆</span> 8247475257
+              </a>
+            </div>
+          </div>
+
+          <div className="lg:col-span-5">
+            <div className="bg-ink text-paper rounded-[min(1.2vw,16px)] ring-1 ring-black/5 overflow-hidden">
+              <div className="flex items-center gap-1.5 px-4 py-3 border-b border-paper/10">
+                <span className="size-2.5 rounded-full bg-lime/80" />
+                <span className="size-2.5 rounded-full bg-paper/40" />
+                <span className="size-2.5 rounded-full bg-paper/40" />
+                <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-paper/40 ml-3">
+                  prabhu@dev:~
+                </span>
+              </div>
+              <div className="font-mono text-[13px] leading-relaxed px-4 py-5">
+                <p className="text-paper/50">$ whoami</p>
+                <p>Gudavalli Prabhu Teja</p>
+                <p className="text-paper/50 mt-3">$ cat focus.txt</p>
+                <p>Python · Machine Learning · Prompt Engineering</p>
+                <p className="text-paper/50 mt-3">$ python --version</p>
+                <p className="text-lime">3.12.4</p>
+                <p className="text-paper/50 mt-3">$ status</p>
+                <p>Intern @ Techverra Solutions · Aug–Sep 2025</p>
+                <p className="text-paper/50 mt-3">$ ./load project</p>
+                <p>
+                  SMART-GRIEV <span className="text-paper/40">▲ online</span>
+                </p>
+                <p className="text-paper/50 mt-3">
+                  $ <span className="inline-block size-3.5 bg-lime align-middle" />
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* OBJECTIVE */}
+      <div className="border-b border-ink/10">
+        <div className="mx-auto max-w-6xl px-5 sm:px-8 py-14 grid lg:grid-cols-12 gap-8">
+          <div className="lg:col-span-3">
+            <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-ink/50">01 — Objective</p>
+          </div>
+          <div className="lg:col-span-9">
+            <p className="font-display text-2xl sm:text-3xl font-medium leading-tight tracking-tight text-balance max-w-[40ch]">
+              Seeking an entry-level role in AI engineering, Python or software development — turning
+              data into AI systems that actually run.
+            </p>
+            <p className="mt-4 text-base text-ink/70 text-pretty max-w-[60ch]">
+              B.Tech Information Technology student with skills in Python development, machine
+              learning, prompt engineering and web development. Interested in AI, automation and
+              scalable application development.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* SKILLS */}
+      <div id="skills" className="border-b border-ink/10">
+        <div className="mx-auto max-w-6xl px-5 sm:px-8 py-14">
+          <div className="flex items-baseline justify-between mb-8">
+            <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-ink/50">02 — Skills</p>
+            <span className="font-mono text-[11px] text-ink/40">grouped by domain</span>
+          </div>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {skillGroups.map((g) => (
+              <div key={g.title} className="bg-paper-dim rounded-[min(1vw,12px)] ring-1 ring-black/5 p-5">
+                <p className="font-display font-semibold text-lg">{g.title}</p>
+                <p className="font-mono text-[11px] text-ink/50 mt-1">{g.sub}</p>
+                <div className="flex flex-wrap gap-1.5 mt-4">
+                  {g.tags.map((t) => (
+                    <span
+                      key={t.label}
+                      className={`font-mono text-[11px] text-paper px-2 py-1 rounded-md ${t.accent ? "bg-brand" : "bg-ink"}`}
+                    >
+                      {t.label}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* EXPERIENCE + PROJECT */}
+      <div id="exp" className="border-b border-ink/10">
+        <div className="mx-auto max-w-6xl px-5 sm:px-8 py-14 grid lg:grid-cols-12 gap-10">
+          <div className="lg:col-span-5">
+            <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-ink/50 mb-6">
+              03 — Experience
+            </p>
+            <div className="border-l-2 border-ink pl-5">
+              <p className="font-mono text-[11px] uppercase tracking-[0.15em] text-brand">Aug – Sep 2025</p>
+              <p className="font-display font-semibold text-lg mt-1">Techverra Solutions</p>
+              <p className="font-mono text-[12px] text-ink/50 mt-1">Python &amp; ML Intern</p>
+              <p className="mt-3 text-base text-ink/70 text-pretty">
+                Hands-on internship in Python programming and machine learning: data preprocessing,
+                AI model interaction, scripting, diffusion models, testing and AI output validation.
+              </p>
+            </div>
+          </div>
+
+          <div id="work" className="lg:col-span-7">
+            <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-ink/50 mb-6">
+              04 — Featured Project
+            </p>
+            <div className="bg-ink text-paper rounded-[min(1.2vw,16px)] ring-1 ring-black/5 overflow-hidden">
+              <img
+                src={smartGriev}
+                alt="SMART-GRIEV dashboard interface showing grievance records"
+                width={1024}
+                height={576}
+                loading="lazy"
+                className="w-full aspect-[16/9] object-cover"
+              />
+              <div className="p-6">
+                <div className="flex items-center justify-between">
+                  <p className="font-display font-semibold text-xl">SMART-GRIEV</p>
+                  <span className="font-mono text-[11px] bg-lime text-ink px-2 py-1 rounded-md">FLAGSHIP</span>
+                </div>
+                <p className="mt-3 text-base text-paper/70 text-pretty max-w-[48ch]">
+                  An AI-powered Python learning platform built with React.js, Django and the Gemini
+                  API — real-time coding assistance, debugging with clear explanations and gamified,
+                  personalised learning.
+                </p>
+                <div className="flex flex-wrap gap-1.5 mt-5">
+                  {["React.js", "Django", "Gemini API"].map((t) => (
+                    <span key={t} className="font-mono text-[11px] ring-1 ring-paper/20 px-2 py-1 rounded-md">
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* EDUCATION + CERTS */}
+      <div className="border-b border-ink/10">
+        <div className="mx-auto max-w-6xl px-5 sm:px-8 py-14 grid lg:grid-cols-12 gap-10">
+          <div className="lg:col-span-6">
+            <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-ink/50 mb-6">
+              05 — Education
+            </p>
+            <div className="space-y-1">
+              {education.map((e, i) => (
+                <div
+                  key={e.title}
+                  className={`flex items-start gap-4 py-3 ${i < education.length - 1 ? "border-b border-ink/10" : ""}`}
+                >
+                  <span
+                    className={`font-mono text-[12px] w-24 shrink-0 ${i === 0 ? "text-brand" : "text-ink/60"}`}
+                  >
+                    {e.years}
+                  </span>
+                  <div>
+                    <p className="font-display font-medium text-base">{e.title}</p>
+                    <p className="font-mono text-[11px] text-ink/50">{e.note}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="lg:col-span-6">
+            <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-ink/50 mb-6">
+              06 — Certifications
+            </p>
+            <ul className="space-y-2">
+              {certifications.map((c, i) => (
+                <li
+                  key={c}
+                  className="flex items-center gap-3 bg-paper-dim rounded-[min(1vw,10px)] ring-1 ring-black/5 px-4 py-3"
+                >
+                  <span className="font-mono text-[11px] text-brand shrink-0">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span className="text-base">{c}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      {/* CONTACT */}
+      <div id="contact" className="bg-ink text-paper">
+        <div className="mx-auto max-w-6xl px-5 sm:px-8 py-16 sm:py-20 text-center">
+          <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-paper/50 mb-5">
+            07 — Contact
+          </p>
+          <h2 className="font-display text-4xl sm:text-5xl font-semibold tracking-tight text-balance max-w-[24ch] mx-auto">
+            Let's build something that runs.
+          </h2>
+          <div className="mt-8 flex flex-wrap gap-3 justify-center">
+            <a
+              href="mailto:pteja0960@gmail.com"
+              className="inline-flex items-center gap-2 bg-lime text-ink py-2 pr-4 pl-3 rounded-[min(1vw,12px)] text-sm font-medium hover:bg-paper transition-colors"
+            >
+              <span className="font-mono text-xs">✉</span> pteja0960@gmail.com
+            </a>
+            <a
+              href="tel:8247475257"
+              className="inline-flex items-center gap-2 py-2 pr-4 pl-3 rounded-[min(1vw,12px)] text-sm font-medium ring-1 ring-paper/25 hover:ring-paper transition-colors"
+            >
+              <span className="font-mono text-xs">✆</span> 8247475257
+            </a>
+          </div>
+          <p className="font-mono text-[11px] text-paper/40 mt-14">
+            © 2026 Gudavalli Prabhu Teja
+          </p>
+        </div>
+      </div>
     </div>
   );
 }
