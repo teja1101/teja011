@@ -84,6 +84,17 @@ const certifications = [
 function Index() {
   return (
     <div className="min-h-screen bg-paper text-ink font-sans">
+      {/* AVAILABILITY BANNER */}
+      <div className="bg-lime text-ink">
+        <div className="mx-auto max-w-6xl px-5 sm:px-8 py-2 flex items-center justify-center gap-2 font-mono text-[11px] uppercase tracking-[0.18em]">
+          <span className="relative flex size-2">
+            <span className="absolute inline-flex h-full w-full rounded-full bg-ink/50 animate-ping" />
+            <span className="relative inline-flex size-2 rounded-full bg-ink" />
+          </span>
+          Available for work — open to AI / Python roles &amp; internships
+        </div>
+      </div>
+
       {/* NAV */}
       <div className="border-b border-ink/10">
         <div className="mx-auto max-w-6xl px-5 sm:px-8 py-4 flex items-center justify-between">
@@ -131,6 +142,21 @@ function Index() {
                 className="inline-flex items-center gap-2 py-2 pr-4 pl-3 rounded-[min(1vw,12px)] text-sm font-medium ring-1 ring-ink/20 hover:ring-ink transition-colors"
               >
                 <span className="font-mono text-xs">✆</span> 8247475257
+              </a>
+              <a
+                href={resumeAsset.url}
+                download="Gudavalli-Prabhu-Teja-Resume.pdf"
+                className="inline-flex items-center gap-2 py-2 pr-4 pl-3 rounded-[min(1vw,12px)] text-sm font-medium bg-ink text-paper hover:bg-brand transition-colors"
+              >
+                <span className="font-mono text-xs">↓</span> Download résumé
+              </a>
+              <a
+                href={GITHUB_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 py-2 pr-4 pl-3 rounded-[min(1vw,12px)] text-sm font-medium ring-1 ring-ink/20 hover:ring-ink transition-colors"
+              >
+                <span className="font-mono text-xs">{"</>"}</span> GitHub
               </a>
             </div>
           </div>
@@ -257,10 +283,62 @@ function Index() {
                   personalised learning.
                 </p>
                 <div className="flex flex-wrap gap-1.5 mt-5">
-                  {["React.js", "Django", "Gemini API"].map((t) => (
+                  {["React.js", "Django", "Gemini API", "scikit-learn", "NLP"].map((t) => (
                     <span key={t} className="font-mono text-[11px] ring-1 ring-paper/20 px-2 py-1 rounded-md">
                       {t}
                     </span>
+                  ))}
+                </div>
+
+                <a
+                  href={GITHUB_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-5 inline-flex items-center gap-2 bg-lime text-ink py-2 pr-4 pl-3 rounded-[min(1vw,12px)] text-sm font-medium hover:bg-paper transition-colors"
+                >
+                  <span className="font-mono text-xs">{"</>"}</span> View on GitHub
+                </a>
+
+                {/* FLOW */}
+                <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-paper/50 mt-8 mb-3">
+                  How it flows
+                </p>
+                <div className="flex flex-wrap items-center gap-2 font-mono text-[11px]">
+                  {[
+                    "Citizen files complaint",
+                    "NLP classifier",
+                    "Department + priority",
+                    "Officer assigned",
+                    "Status tracked",
+                    "Resolved",
+                  ].map((step, i, arr) => (
+                    <span key={step} className="flex items-center gap-2">
+                      <span className="ring-1 ring-paper/20 px-2 py-1 rounded-md">{step}</span>
+                      {i < arr.length - 1 && <span className="text-lime">→</span>}
+                    </span>
+                  ))}
+                </div>
+                <p className="mt-4 font-mono text-[11px] text-paper/50">
+                  92.4% classification accuracy · multi-department routing · JWT + role-based access
+                </p>
+
+                {/* SCREENS */}
+                <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-paper/50 mt-8 mb-3">
+                  Screens
+                </p>
+                <div className="grid sm:grid-cols-2 gap-3">
+                  {shots.map((s) => (
+                    <figure key={s.src} className="rounded-[min(1vw,12px)] overflow-hidden ring-1 ring-paper/15">
+                      <img
+                        src={s.src}
+                        alt={s.alt}
+                        loading="lazy"
+                        className="w-full aspect-[16/9] object-cover object-top bg-paper"
+                      />
+                      <figcaption className="font-mono text-[11px] text-paper/60 px-3 py-2">
+                        {s.cap}
+                      </figcaption>
+                    </figure>
                   ))}
                 </div>
               </div>
