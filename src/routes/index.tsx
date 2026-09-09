@@ -401,13 +401,15 @@ function Index() {
                   <p className="font-display font-semibold text-xl">SMART-GRIEV</p>
                   <span className="font-mono text-[11px] bg-lime text-ink px-2 py-1 rounded-md">FLAGSHIP</span>
                 </div>
-                <p className="mt-3 text-base text-paper/70 text-pretty max-w-[48ch]">
-                  An AI-powered Python learning platform built with React.js, Django and the Gemini
-                  API — real-time coding assistance, debugging with clear explanations and gamified,
-                  personalised learning.
+                <p className="mt-3 text-base text-paper/70 text-pretty max-w-[52ch]">
+                  A smart public-grievance platform. Citizens file a complaint in plain language, an
+                  NLP model reads it, picks the right department and a priority, and the complaint is
+                  routed to an officer — while the citizen watches the status move in real time.
+                  I built the full React front end: routing, auth-guarded dashboards, forms with
+                  validation, filterable tables and the analytics charts.
                 </p>
                 <div className="flex flex-wrap gap-1.5 mt-5">
-                  {["React.js", "Django", "Gemini API", "scikit-learn", "NLP"].map((t) => (
+                  {["React.js", "JavaScript", "CSS", "Django REST", "MySQL", "scikit-learn", "NLP", "Gemini API", "JWT"].map((t) => (
                     <span key={t} className="font-mono text-[11px] ring-1 ring-paper/20 px-2 py-1 rounded-md">
                       {t}
                     </span>
@@ -463,6 +465,49 @@ function Index() {
                         {s.cap}
                       </figcaption>
                     </figure>
+                  ))}
+                </div>
+
+                {/* FEATURES */}
+                <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-paper/50 mt-8 mb-3">
+                  What it does
+                </p>
+                <div className="grid sm:grid-cols-2 gap-3">
+                  {projectFeatures.map((f) => (
+                    <div key={f.t} className="rounded-[min(1vw,12px)] ring-1 ring-paper/15 p-4">
+                      <p className="text-lime font-mono text-sm">{f.icon}</p>
+                      <p className="font-display font-semibold text-base mt-1">{f.t}</p>
+                      <p className="text-sm text-paper/60 mt-1 text-pretty">{f.d}</p>
+                    </div>
+                  ))}
+                </div>
+
+                {/* ARCHITECTURE */}
+                <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-paper/50 mt-8 mb-3">
+                  System architecture
+                </p>
+                <div className="rounded-[min(1vw,12px)] ring-1 ring-paper/15 p-4 overflow-x-auto">
+                  <ArchitectureDiagram />
+                </div>
+
+                {/* PIPELINE */}
+                <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-paper/50 mt-8 mb-3">
+                  AI classification pipeline
+                </p>
+                <div className="rounded-[min(1vw,12px)] ring-1 ring-paper/15 p-4 overflow-x-auto">
+                  <PipelineDiagram />
+                </div>
+
+                {/* CHALLENGES */}
+                <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-paper/50 mt-8 mb-3">
+                  Problems I had to solve
+                </p>
+                <div className="space-y-3">
+                  {challenges.map((c) => (
+                    <div key={c.t} className="border-l-2 border-lime pl-4">
+                      <p className="font-display font-semibold text-base">{c.t}</p>
+                      <p className="text-sm text-paper/60 mt-1 text-pretty">{c.d}</p>
+                    </div>
                   ))}
                 </div>
               </div>
