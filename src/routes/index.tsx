@@ -149,7 +149,7 @@ function Index() {
             <span className="absolute inline-flex h-full w-full rounded-full bg-ink/50 animate-ping" />
             <span className="relative inline-flex size-2 rounded-full bg-ink" />
           </span>
-          Available for work — open to AI / Python roles &amp; internships
+          Available for work — front-end / React developer &amp; AI / Python roles
         </div>
       </div>
 
@@ -161,6 +161,7 @@ function Index() {
           </span>
           <nav className="font-mono text-[11px] uppercase tracking-[0.18em] hidden md:flex gap-6">
             <a href="#work" className="hover:text-brand transition-colors">Work</a>
+            <a href="#frontend" className="hover:text-brand transition-colors">Front-end</a>
             <a href="#skills" className="hover:text-brand transition-colors">Skills</a>
             <a href="#exp" className="hover:text-brand transition-colors">Experience</a>
             <a href="#contact" className="hover:text-brand transition-colors">Contact</a>
@@ -179,15 +180,23 @@ function Index() {
         <div className="mx-auto max-w-6xl px-5 sm:px-8 py-14 sm:py-20 grid lg:grid-cols-12 gap-10">
           <div className="lg:col-span-7">
             <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-ink/50 mb-5">
-              B.Tech IT · AI &amp; Python Developer
+              B.Tech IT · Front-End React Developer · AI &amp; Python
             </p>
             <h1 className="font-display text-5xl sm:text-6xl xl:text-7xl font-semibold leading-none tracking-tight text-balance max-w-[20ch]">
               Gudavalli Prabhu Teja
             </h1>
             <p className="mt-6 text-base sm:text-lg text-ink/70 text-pretty max-w-[52ch]">
-              I build machine-learning models, Python tooling, and prompt-driven AI systems.
-              Currently sharpening ML and prompt engineering on real projects.
+              I build front-ends in React — component-driven interfaces, responsive layouts and
+              dashboards wired to real APIs — backed by Python, machine learning and prompt
+              engineering on the server side.
             </p>
+            <div className="mt-6 flex flex-wrap gap-2 font-mono text-[11px]">
+              {["React", "JavaScript", "HTML/CSS", "REST", "Django", "Python", "MySQL"].map((t) => (
+                <span key={t} className="ring-1 ring-ink/15 bg-paper-dim px-2 py-1 rounded-md">
+                  {t}
+                </span>
+              ))}
+            </div>
             <div className="mt-8 flex flex-wrap gap-3 items-center">
               <a
                 href="mailto:pteja0960@gmail.com"
