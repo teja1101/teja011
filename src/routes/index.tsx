@@ -384,6 +384,13 @@ function Index() {
               </a>
               <div className="work-card-copy"><p className="case-eyebrow">Full-stack Python / Productivity</p><h3><a href="/job-tracker">Job Application Tracker</a></h3><p>Organise applications, interviews and offers from one responsive dashboard.</p><a className="work-read" href="/job-tracker">Read case study <span aria-hidden="true">↗</span></a></div>
             </article>
+            <article id="expense-tracker-project" className="work-card">
+              <a href="/personal-expense-tracker" className="work-cover work-cover-ddos" aria-label="Read the Personal Expense Tracker case study">
+                <div className="work-flow" aria-hidden="true"><span>PERSONAL FINANCE</span><strong>Record.<br />Understand.</strong><div>INCOME <b>→</b> SQLITE <b>→</b> CHARTS</div></div>
+                <span className="work-open" aria-hidden="true">↗</span>
+              </a>
+              <div className="work-card-copy"><p className="case-eyebrow">Full-stack Python / Finance</p><h3><a href="/personal-expense-tracker">Personal Expense Tracker</a></h3><p>Track income, expenses and spending patterns through one responsive finance dashboard.</p><a className="work-read" href="/personal-expense-tracker">Read case study <span aria-hidden="true">↗</span></a></div>
+            </article>
           </div>
         </div>
       </section>
