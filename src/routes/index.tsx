@@ -126,7 +126,7 @@ const challenges = [
 ];
 
 const education = [
-  { years: "2022–26", title: "B.Tech — CSE / Information Technology", note: "Usha Rama College of Engineering and Technology" },
+  { years: "2022–26", title: "B.Tech — Computer Science and Engineering (CSE)", note: "Usha Rama College of Engineering and Technology" },
   { years: "2020–22", title: "Intermediate — Board of Intermediate Education AP", note: "Sri Chaitanya Junior College, Vijayawada · 60%" },
   { years: "2019–20", title: "Secondary — Board of Secondary Education AP", note: "V.S St John's HR. Sec. School · 78%" },
 ];
@@ -180,7 +180,7 @@ function Index() {
         <div className="mx-auto max-w-6xl px-5 sm:px-8 py-14 sm:py-20 grid lg:grid-cols-12 gap-10">
           <div className="lg:col-span-7">
             <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-ink/50 mb-5">
-              B.Tech IT · Front-End React Developer · AI &amp; Python
+              B.Tech CSE · Front-End React Developer · AI &amp; Python
             </p>
             <h1 className="font-display text-5xl sm:text-6xl xl:text-7xl font-semibold leading-none tracking-tight text-balance max-w-[20ch]">
               Gudavalli Prabhu Teja
@@ -272,7 +272,7 @@ function Index() {
               use, with AI and Python behind them.
             </p>
             <p className="mt-4 text-base text-ink/70 text-pretty max-w-[60ch]">
-              B.Tech Information Technology student. I write component-driven React, responsive CSS
+              B.Tech Computer Science and Engineering (CSE) student. I write component-driven React, responsive CSS
               and API-connected dashboards, and I understand the back end I'm consuming: Django REST,
               MySQL and machine-learning services I've built myself.
             </p>
