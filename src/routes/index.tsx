@@ -377,6 +377,13 @@ function Index() {
               </a>
               <div className="work-card-copy"><p className="case-eyebrow">Machine learning / Cybersecurity</p><h3><a href="/ddos-xai">DDoS Classification &amp; XAI</a></h3><p>Identify suspicious traffic and explain the model’s reasoning.</p><a className="work-read" href="/ddos-xai">Read case study <span aria-hidden="true">↗</span></a></div>
             </article>
+            <article id="job-tracker-project" className="work-card">
+              <a href="/job-tracker" className="work-cover work-cover-ddos" aria-label="Read the Job Application Tracker case study">
+                <div className="work-flow" aria-hidden="true"><span>JOB APPLICATIONS</span><strong>Apply.<br />Track.</strong><div>FORM <b>→</b> FLASK <b>→</b> SQLITE</div></div>
+                <span className="work-open" aria-hidden="true">↗</span>
+              </a>
+              <div className="work-card-copy"><p className="case-eyebrow">Full-stack Python / Productivity</p><h3><a href="/job-tracker">Job Application Tracker</a></h3><p>Organise applications, interviews and offers from one responsive dashboard.</p><a className="work-read" href="/job-tracker">Read case study <span aria-hidden="true">↗</span></a></div>
+            </article>
           </div>
         </div>
       </section>
