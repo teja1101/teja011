@@ -397,7 +397,6 @@ function SmartDetails() {
 
 function DdosDetails() {
   return (
-      {/* SECOND PROJECT */}
       <div id="ddos-project" className="ddos-section border-b border-ink/10">
         <div className="mx-auto max-w-6xl px-5 sm:px-8 py-14 lg:py-20">
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-8">
