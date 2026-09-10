@@ -1113,11 +1113,11 @@ img {
 }
 @keyframes orbit-depth {
   from { transform: rotateX(62deg) rotateY(-18deg) rotateZ(0deg); }
-  to { transform: rotateX(62deg) rotateY(-18deg) rotateZ(360deg); }
+  to { transform: rotateX(62deg) rotateY(342deg) rotateZ(360deg); }
 }
 @keyframes orbit-depth-cross {
   from { transform: rotateX(-58deg) rotateY(38deg) rotateZ(0deg); }
-  to { transform: rotateX(-58deg) rotateY(38deg) rotateZ(-360deg); }
+  to { transform: rotateX(-58deg) rotateY(-322deg) rotateZ(-360deg); }
 }
 @media (max-width: 767px) {
   .hero-section [class~="lg:col-span-5"] > .bg-ink {
