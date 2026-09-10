@@ -12,6 +12,8 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 
+const LINKEDIN_URL = "https://www.linkedin.com/in/gudavalli-prabhuteja-001b75345";
+
 function NotFoundComponent() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
@@ -126,12 +128,31 @@ function RootShell({ children }: { children: ReactNode }) {
   );
 }
 
+function LinkedInButton() {
+  return (
+    <a
+      href={LINKEDIN_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Visit Gudavalli Prabhu Teja on LinkedIn"
+      className="fixed bottom-5 right-5 z-50 inline-flex items-center gap-2 rounded-xl bg-[#0A66C2] px-4 py-3 text-sm font-semibold text-white shadow-lg transition-transform hover:-translate-y-0.5 hover:bg-[#004182] focus:outline-none focus:ring-2 focus:ring-[#0A66C2] focus:ring-offset-2"
+    >
+      <span className="flex size-6 items-center justify-center rounded-md bg-white text-[13px] font-bold text-[#0A66C2]">
+        in
+      </span>
+      <span className="hidden sm:inline">LinkedIn</span>
+    </a>
+  );
+}
+
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
 
   return (
     <QueryClientProvider client={queryClient}>
+      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
       <Outlet />
+      <LinkedInButton />
     </QueryClientProvider>
   );
 }
