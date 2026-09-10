@@ -5,22 +5,130 @@ import sgLanding from "@/assets/sg-landing.png.asset.json";
 import sgAdmin from "@/assets/sg-admin.png.asset.json";
 import sgSubmit from "@/assets/sg-submit.png.asset.json";
 import sgDetail from "@/assets/sg-detail.png.asset.json";
+import { ArchitectureDiagram, PipelineDiagram, ComponentTreeDiagram } from "@/components/diagrams";
 
 const GITHUB_URL = "https://github.com/teja1101/smartgrieve";
-const LINKEDIN_URL = "https://www.linkedin.com/in/gudavalli-prabhuteja-001b75345";
 
-const skills = [
-  ["Front-end", "React.js, JavaScript, HTML5, CSS3, responsive interfaces"],
-  ["Back-end", "Django, REST APIs, MySQL, JWT authentication"],
-  ["AI / Python", "Python, machine learning, NLP, prompt engineering"],
-  ["Tools", "Git, GitHub, API integration, deployment workflows"],
+const shots = [
+  { src: sgLanding.url, alt: "Smart Griev landing page with role-based sign in portal", cap: "Landing + role sign-in" },
+  { src: sgAdmin.url, alt: "Admin dashboard with complaint counts, department distribution and weekly trends", cap: "Admin analytics dashboard" },
+  { src: sgSubmit.url, alt: "Citizen complaint submission form with AI analysis enabled", cap: "Citizen complaint form" },
+  { src: sgDetail.url, alt: "Complaint detail view showing status, department routing and AI confidence score", cap: "AI routing + confidence" },
 ];
 
-const screenshots = [
-  { src: sgLanding.url, label: "Role-based landing" },
-  { src: sgAdmin.url, label: "Admin analytics" },
-  { src: sgSubmit.url, label: "Complaint submission" },
-  { src: sgDetail.url, label: "AI routing details" },
+export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { title: "Gudavalli Prabhu Teja — Front-End React & AI Developer" },
+      {
+        name: "description",
+        content:
+          "Portfolio of Gudavalli Prabhu Teja — front-end developer building React interfaces, plus Python, machine learning and prompt engineering. Projects, diagrams, skills and contact.",
+      },
+      { property: "og:title", content: "Gudavalli Prabhu Teja — Front-End React & AI Developer" },
+      {
+        property: "og:description",
+        content:
+          "React front-end work, the SMART-GRIEV case study with architecture diagrams, Techverra internship, skills and certifications.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
+  component: Index,
+});
+
+const skillGroups = [
+  {
+    title: "Front-End",
+    sub: "react · ui engineering",
+    tags: [
+      { label: "React.js", accent: true },
+      { label: "JavaScript ES6+", accent: false },
+      { label: "HTML5 / CSS3", accent: false },
+      { label: "Responsive UI", accent: false },
+      { label: "REST APIs", accent: false },
+    ],
+  },
+  {
+    title: "Python",
+    sub: "core · scripting",
+    tags: [
+      { label: "Python", accent: false },
+      { label: "Machine Learning", accent: false },
+      { label: "Data Preprocessing", accent: false },
+    ],
+  },
+  {
+    title: "Back-End & Data",
+    sub: "django · sql",
+    tags: [
+      { label: "Django", accent: false },
+      { label: "MySQL", accent: false },
+      { label: "JWT Auth", accent: false },
+    ],
+  },
+  {
+    title: "AI & Tooling",
+    sub: "prompt · office",
+    tags: [
+      { label: "Prompt Eng.", accent: true },
+      { label: "Gemini API", accent: false },
+      { label: "Git / GitHub", accent: false },
+    ],
+  },
+];
+
+const frontendBars = [
+  { label: "React components & hooks", pct: 88 },
+  { label: "Responsive CSS / layout", pct: 85 },
+  { label: "State & data fetching", pct: 78 },
+  { label: "UI accessibility basics", pct: 72 },
+  { label: "Charts & data visualisation", pct: 75 },
+];
+
+const buildPrinciples = [
+  { n: "01", t: "Component-first", d: "Small, reusable pieces with clear props instead of one giant page file." },
+  { n: "02", t: "Mobile-first CSS", d: "Layouts start at 360px and scale up with fluid grid and clamp-based type." },
+  { n: "03", t: "Real API state", d: "Loading, empty and error states designed alongside the happy path." },
+  { n: "04", t: "Fast by default", d: "Lazy images, code-split routes and no blocking work on first paint." },
+];
+
+const projectFeatures = [
+  { icon: "◆", t: "Role-based portals", d: "Separate citizen, officer and admin dashboards behind one auth layer." },
+  { icon: "▲", t: "AI complaint triage", d: "Text is classified into a department with a confidence score before a human sees it." },
+  { icon: "●", t: "Priority scoring", d: "Urgency inferred from wording and category, so critical issues surface first." },
+  { icon: "■", t: "Live status timeline", d: "Every state change is logged and shown back to the citizen who filed it." },
+  { icon: "◇", t: "Analytics dashboard", d: "Counts, department distribution and weekly trend charts for administrators." },
+  { icon: "✦", t: "Secure by design", d: "JWT sessions, guarded routes and server-side permission checks per role." },
+];
+
+const projectStats = [
+  { k: "92.4%", v: "classification accuracy" },
+  { k: "6", v: "departments routed" },
+  { k: "3", v: "user roles" },
+  { k: "<2s", v: "complaint to routing" },
+];
+
+const challenges = [
+  {
+    t: "Messy, informal complaint text",
+    d: "Citizens write in mixed language and slang. Cleaning, lemmatising and TF-IDF vectorising the text lifted classification accuracy well above the first naive model.",
+  },
+  {
+    t: "Keeping the UI honest about AI",
+    d: "Instead of hiding the model, the interface shows the predicted department with its confidence, and lets an officer override it in one click.",
+  },
+  {
+    t: "Dashboards that stay fast",
+    d: "Tables are paginated and filtered server-side, charts render from pre-aggregated counts, so the admin view stays responsive as complaints grow.",
+  },
+];
+
+const education = [
+  { years: "2022–26", title: "B.Tech — Computer Science and Engineering (CSE)", note: "Usha Rama College of Engineering and Technology" },
+  { years: "2020–22", title: "Intermediate — Board of Intermediate Education AP", note: "Sri Chaitanya Junior College, Vijayawada · 60%" },
+  { years: "2019–20", title: "Secondary — Board of Secondary Education AP", note: "V.S St John's HR. Sec. School · 78%" },
 ];
 
 const certifications = [
@@ -31,261 +139,459 @@ const certifications = [
   "TCS iON IT — 66.8%",
 ];
 
-export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "Gudavalli Prabhu Teja — Front-End React Developer" },
-      {
-        name: "description",
-        content:
-          "Portfolio of Gudavalli Prabhu Teja, a B.Tech CSE graduate focused on front-end React development with Python and AI experience.",
-      },
-      { property: "og:title", content: "Gudavalli Prabhu Teja — Front-End React Developer" },
-      {
-        property: "og:description",
-        content: "React, Python and AI portfolio featuring the SMART-GRIEV project, experience, skills and contact details.",
-      },
-      { property: "og:type", content: "website" },
-    ],
-  }),
-  component: Portfolio,
-});
-
-function Arrow() {
-  return <span aria-hidden="true">↗</span>;
-}
-
-function Portfolio() {
+function Index() {
   return (
-    <main className="min-h-screen bg-paper text-ink">
-      <header className="sticky top-0 z-40 border-b border-ink/10 bg-paper/90 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 sm:px-8">
-          <a href="#top" className="font-display text-lg font-semibold tracking-tight">
-            Prabhu Teja<span className="text-brand">.</span>
-          </a>
-          <nav className="hidden items-center gap-7 text-sm text-ink/60 md:flex">
-            <a href="#about" className="transition-colors hover:text-ink">About</a>
-            <a href="#work" className="transition-colors hover:text-ink">Work</a>
-            <a href="#experience" className="transition-colors hover:text-ink">Experience</a>
-            <a href="#contact" className="transition-colors hover:text-ink">Contact</a>
+    <div className="min-h-screen bg-paper text-ink font-sans">
+      {/* AVAILABILITY BANNER */}
+      <div className="bg-lime text-ink">
+        <div className="mx-auto max-w-6xl px-5 sm:px-8 py-2 flex items-center justify-center gap-2 font-mono text-[11px] uppercase tracking-[0.18em]">
+          <span className="relative flex size-2">
+            <span className="absolute inline-flex h-full w-full rounded-full bg-ink/50 animate-ping" />
+            <span className="relative inline-flex size-2 rounded-full bg-ink" />
+          </span>
+          Available for work — front-end / React developer &amp; AI / Python roles
+        </div>
+      </div>
+
+      {/* NAV */}
+      <div className="border-b border-ink/10">
+        <div className="mx-auto max-w-6xl px-5 sm:px-8 py-4 flex items-center justify-between">
+          <span className="font-display text-lg font-semibold tracking-tight">
+            GPT<span className="text-brand">.</span>
+          </span>
+          <nav className="font-mono text-[11px] uppercase tracking-[0.18em] hidden md:flex gap-6">
+            <a href="#work" className="hover:text-brand transition-colors">Work</a>
+            <a href="#frontend" className="hover:text-brand transition-colors">Front-end</a>
+            <a href="#skills" className="hover:text-brand transition-colors">Skills</a>
+            <a href="#exp" className="hover:text-brand transition-colors">Experience</a>
+            <a href="#contact" className="hover:text-brand transition-colors">Contact</a>
           </nav>
           <a
-            href={resumeAsset.url}
-            download="Gudavalli-Prabhu-Teja-Resume.pdf"
-            className="rounded-full bg-ink px-4 py-2 text-sm font-medium text-paper transition-transform hover:-translate-y-0.5"
+            href="mailto:pteja0960@gmail.com"
+            className="font-mono text-[11px] uppercase tracking-[0.18em] bg-ink text-paper px-3 py-2 rounded-[min(1vw,12px)] hover:bg-brand transition-colors"
           >
-            Résumé ↓
+            Hire me
           </a>
         </div>
-      </header>
+      </div>
 
-      <section id="top" className="mx-auto max-w-6xl px-5 pb-20 pt-16 sm:px-8 sm:pb-28 sm:pt-24">
-        <div className="max-w-4xl">
-          <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-ink/10 bg-white/40 px-3 py-1.5 text-xs font-medium text-ink/65">
-            <span className="size-2 rounded-full bg-lime" />
-            Available for fresher front-end opportunities
+      {/* HERO */}
+      <div className="border-b border-ink/10">
+        <div className="mx-auto max-w-6xl px-5 sm:px-8 py-14 sm:py-20 grid lg:grid-cols-12 gap-10">
+          <div className="lg:col-span-7">
+            <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-ink/50 mb-5">
+              B.Tech CSE · Front-End React Developer · AI &amp; Python
+            </p>
+            <h1 className="font-display text-5xl sm:text-6xl xl:text-7xl font-semibold leading-none tracking-tight text-balance max-w-[20ch]">
+              Gudavalli Prabhu Teja
+            </h1>
+            <p className="mt-6 text-base sm:text-lg text-ink/70 text-pretty max-w-[52ch]">
+              I build front-ends in React — component-driven interfaces, responsive layouts and
+              dashboards wired to real APIs — backed by Python, machine learning and prompt
+              engineering on the server side.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-2 font-mono text-[11px]">
+              {["React", "JavaScript", "HTML/CSS", "REST", "Django", "Python", "MySQL"].map((t) => (
+                <span key={t} className="ring-1 ring-ink/15 bg-paper-dim px-2 py-1 rounded-md">
+                  {t}
+                </span>
+              ))}
+            </div>
+            <div className="mt-8 flex flex-wrap gap-3 items-center">
+              <a
+                href="mailto:pteja0960@gmail.com"
+                className="inline-flex items-center gap-2 bg-brand text-paper py-2 pr-4 pl-3 rounded-[min(1vw,12px)] text-sm font-medium hover:bg-ink transition-colors"
+              >
+                <span className="font-mono text-xs">✉</span> pteja0960@gmail.com
+              </a>
+              <a
+                href="tel:8247475257"
+                className="inline-flex items-center gap-2 py-2 pr-4 pl-3 rounded-[min(1vw,12px)] text-sm font-medium ring-1 ring-ink/20 hover:ring-ink transition-colors"
+              >
+                <span className="font-mono text-xs">✆</span> 8247475257
+              </a>
+              <a
+                href={resumeAsset.url}
+                download="Gudavalli-Prabhu-Teja-Resume.pdf"
+                className="inline-flex items-center gap-2 py-2 pr-4 pl-3 rounded-[min(1vw,12px)] text-sm font-medium bg-ink text-paper hover:bg-brand transition-colors"
+              >
+                <span className="font-mono text-xs">↓</span> Download résumé
+              </a>
+              <a
+                href={GITHUB_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 py-2 pr-4 pl-3 rounded-[min(1vw,12px)] text-sm font-medium ring-1 ring-ink/20 hover:ring-ink transition-colors"
+              >
+                <span className="font-mono text-xs">{"</>"}</span> GitHub
+              </a>
+            </div>
           </div>
 
-          <p className="mb-5 text-sm font-medium uppercase tracking-[0.18em] text-ink/45">
-            B.Tech CSE · Front-End React Developer
-          </p>
-          <h1 className="font-display text-5xl font-semibold leading-[0.98] tracking-[-0.045em] sm:text-7xl lg:text-8xl">
-            Gudavalli<br className="hidden sm:block" /> Prabhu Teja
-          </h1>
-          <p className="mt-8 max-w-2xl text-lg leading-8 text-ink/65 sm:text-xl sm:leading-9">
-            I create clean, responsive React interfaces and API-connected products. My background in Python,
-            machine learning and AI helps me understand the full product—not just the screen.
-          </p>
-
-          <div className="mt-9 flex flex-wrap gap-3">
-            <a
-              href="#work"
-              className="rounded-full bg-brand px-5 py-3 text-sm font-medium text-white transition-transform hover:-translate-y-0.5"
-            >
-              View my work
-            </a>
-            <a
-              href={LINKEDIN_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-full border border-ink/15 px-5 py-3 text-sm font-medium transition-colors hover:border-ink/40"
-            >
-              LinkedIn <Arrow />
-            </a>
-            <a
-              href={GITHUB_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-full border border-ink/15 px-5 py-3 text-sm font-medium transition-colors hover:border-ink/40"
-            >
-              GitHub <Arrow />
-            </a>
+          <div className="lg:col-span-5">
+            <div className="bg-ink text-paper rounded-[min(1.2vw,16px)] ring-1 ring-black/5 overflow-hidden">
+              <div className="flex items-center gap-1.5 px-4 py-3 border-b border-paper/10">
+                <span className="size-2.5 rounded-full bg-lime/80" />
+                <span className="size-2.5 rounded-full bg-paper/40" />
+                <span className="size-2.5 rounded-full bg-paper/40" />
+                <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-paper/40 ml-3">
+                  prabhu@dev:~
+                </span>
+              </div>
+              <div className="font-mono text-[13px] leading-relaxed px-4 py-5">
+                <p className="text-paper/50">$ whoami</p>
+                <p>Gudavalli Prabhu Teja</p>
+                <p className="text-paper/50 mt-3">$ cat focus.txt</p>
+                <p>Python · Machine Learning · Prompt Engineering</p>
+                <p className="text-paper/50 mt-3">$ python --version</p>
+                <p className="text-lime">3.12.4</p>
+                <p className="text-paper/50 mt-3">$ status</p>
+                <p>Intern @ Techverra Solutions · Aug–Sep 2025</p>
+                <p className="text-paper/50 mt-3">$ ./load project</p>
+                <p>
+                  SMART-GRIEV <span className="text-paper/40">▲ online</span>
+                </p>
+                <p className="text-paper/50 mt-3">
+                  $ <span className="inline-block size-3.5 bg-lime align-middle" />
+                </p>
+              </div>
+            </div>
           </div>
         </div>
-      </section>
+      </div>
 
-      <section id="about" className="border-t border-ink/10">
-        <div className="mx-auto grid max-w-6xl gap-10 px-5 py-20 sm:px-8 lg:grid-cols-[0.8fr_2fr] lg:py-24">
-          <div>
-            <p className="text-sm font-medium text-ink/45">01 / About</p>
+      {/* OBJECTIVE */}
+      <div className="border-b border-ink/10">
+        <div className="mx-auto max-w-6xl px-5 sm:px-8 py-14 grid lg:grid-cols-12 gap-8">
+          <div className="lg:col-span-3">
+            <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-ink/50">01 — Objective</p>
           </div>
-          <div>
-            <h2 className="max-w-3xl font-display text-3xl font-medium leading-tight tracking-tight sm:text-4xl">
-              A CSE graduate focused on simple interfaces, useful products and thoughtful front-end development.
-            </h2>
-            <p className="mt-6 max-w-2xl text-base leading-7 text-ink/60">
-              I enjoy turning ideas into responsive web experiences using React and JavaScript. I also have hands-on
-              exposure to Django, MySQL, Python and machine-learning workflows, which helps me work comfortably across
-              APIs, data and UI states.
+          <div className="lg:col-span-9">
+            <p className="font-display text-2xl sm:text-3xl font-medium leading-tight tracking-tight text-balance max-w-[40ch]">
+              Looking for a front-end developer role — building React interfaces people can actually
+              use, with AI and Python behind them.
             </p>
-
-            <div className="mt-12 grid gap-x-10 gap-y-8 sm:grid-cols-2">
-              {skills.map(([title, text]) => (
-                <div key={title} className="border-t border-ink/10 pt-4">
-                  <p className="font-display font-semibold">{title}</p>
-                  <p className="mt-2 text-sm leading-6 text-ink/55">{text}</p>
+            <p className="mt-4 text-base text-ink/70 text-pretty max-w-[60ch]">
+              B.Tech Computer Science and Engineering (CSE) student. I write component-driven React, responsive CSS
+              and API-connected dashboards, and I understand the back end I'm consuming: Django REST,
+              MySQL and machine-learning services I've built myself.
+            </p>
+            <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3">
+              {projectStats.map((s) => (
+                <div key={s.k} className="bg-paper-dim rounded-[min(1vw,12px)] ring-1 ring-black/5 p-4">
+                  <p className="font-display text-2xl font-semibold tracking-tight">{s.k}</p>
+                  <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-ink/50 mt-1">
+                    {s.v}
+                  </p>
                 </div>
               ))}
             </div>
           </div>
         </div>
-      </section>
+      </div>
 
-      <section id="work" className="border-t border-ink/10 bg-white/25">
-        <div className="mx-auto max-w-6xl px-5 py-20 sm:px-8 lg:py-24">
-          <div className="mb-10 flex flex-wrap items-end justify-between gap-5">
-            <div>
-              <p className="text-sm font-medium text-ink/45">02 / Featured work</p>
-              <h2 className="mt-3 font-display text-4xl font-semibold tracking-tight sm:text-5xl">SMART-GRIEV</h2>
-            </div>
-            <a
-              href={GITHUB_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-sm font-medium underline decoration-ink/25 underline-offset-4 hover:decoration-ink"
-            >
-              View source <Arrow />
-            </a>
+      {/* SKILLS */}
+      <div id="skills" className="border-b border-ink/10">
+        <div className="mx-auto max-w-6xl px-5 sm:px-8 py-14">
+          <div className="flex items-baseline justify-between mb-8">
+            <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-ink/50">02 — Skills</p>
+            <span className="font-mono text-[11px] text-ink/40">grouped by domain</span>
           </div>
-
-          <div className="overflow-hidden rounded-3xl border border-ink/10 bg-ink">
-            <img
-              src={smartGriev}
-              alt="SMART-GRIEV dashboard"
-              className="aspect-[16/8.5] w-full object-cover object-top"
-              loading="lazy"
-            />
-            <div className="grid gap-10 p-6 text-paper sm:p-8 lg:grid-cols-[1.2fr_0.8fr] lg:p-10">
-              <div>
-                <p className="max-w-2xl text-lg leading-8 text-paper/75">
-                  An AI-assisted grievance platform where citizens submit complaints, the system classifies them by
-                  department and priority, officers manage cases, and users follow progress through status updates.
-                </p>
-                <p className="mt-5 max-w-2xl text-sm leading-6 text-paper/50">
-                  My focus was the React front end: authentication flows, dashboards, complaint forms, filterable data,
-                  status views and analytics connected to the backend APIs.
-                </p>
-              </div>
-              <div className="grid grid-cols-2 gap-5 border-t border-paper/15 pt-6 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0">
-                <div>
-                  <p className="font-display text-3xl font-semibold">92.4%</p>
-                  <p className="mt-1 text-xs text-paper/45">classification accuracy</p>
-                </div>
-                <div>
-                  <p className="font-display text-3xl font-semibold">3</p>
-                  <p className="mt-1 text-xs text-paper/45">role-based portals</p>
-                </div>
-                <div>
-                  <p className="font-display text-3xl font-semibold">6</p>
-                  <p className="mt-1 text-xs text-paper/45">departments routed</p>
-                </div>
-                <div>
-                  <p className="font-display text-3xl font-semibold">&lt;2s</p>
-                  <p className="mt-1 text-xs text-paper/45">routing response</p>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {skillGroups.map((g) => (
+              <div key={g.title} className="bg-paper-dim rounded-[min(1vw,12px)] ring-1 ring-black/5 p-5">
+                <p className="font-display font-semibold text-lg">{g.title}</p>
+                <p className="font-mono text-[11px] text-ink/50 mt-1">{g.sub}</p>
+                <div className="flex flex-wrap gap-1.5 mt-4">
+                  {g.tags.map((t) => (
+                    <span
+                      key={t.label}
+                      className={`font-mono text-[11px] text-paper px-2 py-1 rounded-md ${t.accent ? "bg-brand" : "bg-ink"}`}
+                    >
+                      {t.label}
+                    </span>
+                  ))}
                 </div>
               </div>
-            </div>
-          </div>
-
-          <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {screenshots.map((shot) => (
-              <figure key={shot.label} className="overflow-hidden rounded-2xl border border-ink/10 bg-paper">
-                <img src={shot.src} alt={shot.label} loading="lazy" className="aspect-[16/10] w-full object-cover object-top" />
-                <figcaption className="px-4 py-3 text-xs text-ink/50">{shot.label}</figcaption>
-              </figure>
             ))}
           </div>
-
-          <div className="mt-8 flex flex-wrap gap-x-5 gap-y-2 text-sm text-ink/50">
-            <span>React.js</span><span>JavaScript</span><span>Django REST</span><span>MySQL</span>
-            <span>scikit-learn</span><span>NLP</span><span>Gemini API</span><span>JWT</span>
-          </div>
         </div>
-      </section>
+      </div>
 
-      <section id="experience" className="border-t border-ink/10">
-        <div className="mx-auto grid max-w-6xl gap-10 px-5 py-20 sm:px-8 lg:grid-cols-[0.8fr_2fr] lg:py-24">
-          <div>
-            <p className="text-sm font-medium text-ink/45">03 / Experience</p>
+      {/* FRONT-END CRAFT */}
+      <div id="frontend" className="border-b border-ink/10">
+        <div className="mx-auto max-w-6xl px-5 sm:px-8 py-14">
+          <div className="flex items-baseline justify-between mb-8">
+            <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-ink/50">
+              02b — Front-end craft
+            </p>
+            <span className="font-mono text-[11px] text-ink/40">how I build UI</span>
           </div>
-          <div>
-            <div className="grid gap-5 border-b border-ink/10 pb-10 sm:grid-cols-[1fr_auto]">
-              <div>
-                <h2 className="font-display text-2xl font-semibold">Python & ML Intern</h2>
-                <p className="mt-1 text-ink/55">Techverra Solutions</p>
-                <p className="mt-4 max-w-2xl text-sm leading-6 text-ink/60">
-                  Worked with Python programming, data preprocessing, machine-learning workflows, AI model interaction,
-                  scripting, testing and output validation.
-                </p>
+
+          <div className="grid lg:grid-cols-12 gap-8">
+            <div className="lg:col-span-5">
+              <div className="space-y-4">
+                {frontendBars.map((b) => (
+                  <div key={b.label}>
+                    <div className="flex items-baseline justify-between font-mono text-[11px] text-ink/60">
+                      <span>{b.label}</span>
+                      <span>{b.pct}%</span>
+                    </div>
+                    <div className="mt-1.5 h-2 rounded-full bg-ink/10 overflow-hidden">
+                      <div className="h-full rounded-full bg-brand" style={{ width: `${b.pct}%` }} />
+                    </div>
+                  </div>
+                ))}
               </div>
-              <p className="text-sm text-ink/45">Aug — Sep 2025</p>
             </div>
 
-            <div className="grid gap-12 pt-12 lg:grid-cols-2">
-              <div>
-                <p className="text-sm font-medium text-ink/45">Education</p>
-                <h3 className="mt-4 font-display text-xl font-semibold">B.Tech — Computer Science and Engineering</h3>
-                <p className="mt-2 text-sm leading-6 text-ink/55">
-                  Usha Rama College of Engineering and Technology<br />2022 — 2026
+            <div className="lg:col-span-7 grid sm:grid-cols-2 gap-4">
+              {buildPrinciples.map((p) => (
+                <div key={p.n} className="bg-paper-dim rounded-[min(1vw,12px)] ring-1 ring-black/5 p-5">
+                  <p className="font-mono text-[11px] text-brand">{p.n}</p>
+                  <p className="font-display font-semibold text-base mt-1">{p.t}</p>
+                  <p className="text-sm text-ink/65 mt-2 text-pretty">{p.d}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-8 bg-ink text-paper rounded-[min(1.2vw,16px)] p-6">
+            <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-paper/50 mb-4">
+              Component tree — SMART-GRIEV front end
+            </p>
+            <ComponentTreeDiagram />
+          </div>
+        </div>
+      </div>
+
+      {/* EXPERIENCE + PROJECT */}
+      <div id="exp" className="border-b border-ink/10">
+        <div className="mx-auto max-w-6xl px-5 sm:px-8 py-14 grid lg:grid-cols-12 gap-10">
+          <div className="lg:col-span-5">
+            <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-ink/50 mb-6">
+              03 — Experience
+            </p>
+            <div className="border-l-2 border-ink pl-5">
+              <p className="font-mono text-[11px] uppercase tracking-[0.15em] text-brand">Aug – Sep 2025</p>
+              <p className="font-display font-semibold text-lg mt-1">Techverra Solutions</p>
+              <p className="font-mono text-[12px] text-ink/50 mt-1">Python &amp; ML Intern</p>
+              <p className="mt-3 text-base text-ink/70 text-pretty">
+                Hands-on internship in Python programming and machine learning: data preprocessing,
+                AI model interaction, scripting, diffusion models, testing and AI output validation.
+              </p>
+            </div>
+          </div>
+
+          <div id="work" className="lg:col-span-7">
+            <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-ink/50 mb-6">
+              04 — Featured Project
+            </p>
+            <div className="bg-ink text-paper rounded-[min(1.2vw,16px)] ring-1 ring-black/5 overflow-hidden">
+              <img
+                src={smartGriev}
+                alt="SMART-GRIEV dashboard interface showing grievance records"
+                width={1024}
+                height={576}
+                loading="lazy"
+                className="w-full aspect-[16/9] object-cover"
+              />
+              <div className="p-6">
+                <div className="flex items-center justify-between">
+                  <p className="font-display font-semibold text-xl">SMART-GRIEV</p>
+                  <span className="font-mono text-[11px] bg-lime text-ink px-2 py-1 rounded-md">FLAGSHIP</span>
+                </div>
+                <p className="mt-3 text-base text-paper/70 text-pretty max-w-[52ch]">
+                  A smart public-grievance platform. Citizens file a complaint in plain language, an
+                  NLP model reads it, picks the right department and a priority, and the complaint is
+                  routed to an officer — while the citizen watches the status move in real time.
+                  I built the full React front end: routing, auth-guarded dashboards, forms with
+                  validation, filterable tables and the analytics charts.
                 </p>
-              </div>
-              <div>
-                <p className="text-sm font-medium text-ink/45">Certifications</p>
-                <div className="mt-4 space-y-3">
-                  {certifications.map((item) => (
-                    <p key={item} className="text-sm leading-6 text-ink/60">{item}</p>
+                <div className="flex flex-wrap gap-1.5 mt-5">
+                  {["React.js", "JavaScript", "CSS", "Django REST", "MySQL", "scikit-learn", "NLP", "Gemini API", "JWT"].map((t) => (
+                    <span key={t} className="font-mono text-[11px] ring-1 ring-paper/20 px-2 py-1 rounded-md">
+                      {t}
+                    </span>
+                  ))}
+                </div>
+
+                <a
+                  href={GITHUB_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-5 inline-flex items-center gap-2 bg-lime text-ink py-2 pr-4 pl-3 rounded-[min(1vw,12px)] text-sm font-medium hover:bg-paper transition-colors"
+                >
+                  <span className="font-mono text-xs">{"</>"}</span> View on GitHub
+                </a>
+
+                {/* FLOW */}
+                <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-paper/50 mt-8 mb-3">
+                  How it flows
+                </p>
+                <div className="flex flex-wrap items-center gap-2 font-mono text-[11px]">
+                  {[
+                    "Citizen files complaint",
+                    "NLP classifier",
+                    "Department + priority",
+                    "Officer assigned",
+                    "Status tracked",
+                    "Resolved",
+                  ].map((step, i, arr) => (
+                    <span key={step} className="flex items-center gap-2">
+                      <span className="ring-1 ring-paper/20 px-2 py-1 rounded-md">{step}</span>
+                      {i < arr.length - 1 && <span className="text-lime">→</span>}
+                    </span>
+                  ))}
+                </div>
+                <p className="mt-4 font-mono text-[11px] text-paper/50">
+                  92.4% classification accuracy · multi-department routing · JWT + role-based access
+                </p>
+
+                {/* SCREENS */}
+                <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-paper/50 mt-8 mb-3">
+                  Screens
+                </p>
+                <div className="grid sm:grid-cols-2 gap-3">
+                  {shots.map((s) => (
+                    <figure key={s.src} className="rounded-[min(1vw,12px)] overflow-hidden ring-1 ring-paper/15">
+                      <img
+                        src={s.src}
+                        alt={s.alt}
+                        loading="lazy"
+                        className="w-full aspect-[16/9] object-cover object-top bg-paper"
+                      />
+                      <figcaption className="font-mono text-[11px] text-paper/60 px-3 py-2">
+                        {s.cap}
+                      </figcaption>
+                    </figure>
+                  ))}
+                </div>
+
+                {/* FEATURES */}
+                <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-paper/50 mt-8 mb-3">
+                  What it does
+                </p>
+                <div className="grid sm:grid-cols-2 gap-3">
+                  {projectFeatures.map((f) => (
+                    <div key={f.t} className="rounded-[min(1vw,12px)] ring-1 ring-paper/15 p-4">
+                      <p className="text-lime font-mono text-sm">{f.icon}</p>
+                      <p className="font-display font-semibold text-base mt-1">{f.t}</p>
+                      <p className="text-sm text-paper/60 mt-1 text-pretty">{f.d}</p>
+                    </div>
+                  ))}
+                </div>
+
+                {/* ARCHITECTURE */}
+                <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-paper/50 mt-8 mb-3">
+                  System architecture
+                </p>
+                <div className="rounded-[min(1vw,12px)] ring-1 ring-paper/15 p-4 overflow-x-auto">
+                  <ArchitectureDiagram />
+                </div>
+
+                {/* PIPELINE */}
+                <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-paper/50 mt-8 mb-3">
+                  AI classification pipeline
+                </p>
+                <div className="rounded-[min(1vw,12px)] ring-1 ring-paper/15 p-4 overflow-x-auto">
+                  <PipelineDiagram />
+                </div>
+
+                {/* CHALLENGES */}
+                <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-paper/50 mt-8 mb-3">
+                  Problems I had to solve
+                </p>
+                <div className="space-y-3">
+                  {challenges.map((c) => (
+                    <div key={c.t} className="border-l-2 border-lime pl-4">
+                      <p className="font-display font-semibold text-base">{c.t}</p>
+                      <p className="text-sm text-paper/60 mt-1 text-pretty">{c.d}</p>
+                    </div>
                   ))}
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </section>
+      </div>
 
-      <section id="contact" className="border-t border-ink/10 bg-ink text-paper">
-        <div className="mx-auto max-w-6xl px-5 py-20 sm:px-8 sm:py-24">
-          <p className="text-sm font-medium text-paper/40">04 / Contact</p>
-          <div className="mt-8 grid items-end gap-10 lg:grid-cols-[1.5fr_1fr]">
-            <div>
-              <h2 className="font-display text-4xl font-semibold leading-tight tracking-tight sm:text-6xl">
-                Looking for an opportunity to build useful products.
-              </h2>
-              <p className="mt-5 max-w-xl text-base leading-7 text-paper/55">
-                I’m open to fresher front-end and React developer opportunities where I can learn quickly and contribute to real products.
-              </p>
-            </div>
-            <div className="flex flex-col items-start gap-4 lg:items-end">
-              <a href="mailto:pteja0960@gmail.com" className="text-lg font-medium hover:text-lime">pteja0960@gmail.com <Arrow /></a>
-              <a href="tel:8247475257" className="text-sm text-paper/55 hover:text-paper">8247475257</a>
-              <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" className="text-sm text-paper/55 hover:text-paper">LinkedIn <Arrow /></a>
-              <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" className="text-sm text-paper/55 hover:text-paper">GitHub <Arrow /></a>
+      {/* EDUCATION + CERTS */}
+      <div className="border-b border-ink/10">
+        <div className="mx-auto max-w-6xl px-5 sm:px-8 py-14 grid lg:grid-cols-12 gap-10">
+          <div className="lg:col-span-6">
+            <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-ink/50 mb-6">
+              05 — Education
+            </p>
+            <div className="space-y-1">
+              {education.map((e, i) => (
+                <div
+                  key={e.title}
+                  className={`flex items-start gap-4 py-3 ${i < education.length - 1 ? "border-b border-ink/10" : ""}`}
+                >
+                  <span
+                    className={`font-mono text-[12px] w-24 shrink-0 ${i === 0 ? "text-brand" : "text-ink/60"}`}
+                  >
+                    {e.years}
+                  </span>
+                  <div>
+                    <p className="font-display font-medium text-base">{e.title}</p>
+                    <p className="font-mono text-[11px] text-ink/50">{e.note}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
-          <div className="mt-16 border-t border-paper/10 pt-6 text-xs text-paper/35">
-            © 2026 Gudavalli Prabhu Teja
+
+          <div className="lg:col-span-6">
+            <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-ink/50 mb-6">
+              06 — Certifications
+            </p>
+            <ul className="space-y-2">
+              {certifications.map((c, i) => (
+                <li
+                  key={c}
+                  className="flex items-center gap-3 bg-paper-dim rounded-[min(1vw,10px)] ring-1 ring-black/5 px-4 py-3"
+                >
+                  <span className="font-mono text-[11px] text-brand shrink-0">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span className="text-base">{c}</span>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
-      </section>
-    </main>
+      </div>
+
+      {/* CONTACT */}
+      <div id="contact" className="bg-ink text-paper">
+        <div className="mx-auto max-w-6xl px-5 sm:px-8 py-16 sm:py-20 text-center">
+          <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-paper/50 mb-5">
+            07 — Contact
+          </p>
+          <h2 className="font-display text-4xl sm:text-5xl font-semibold tracking-tight text-balance max-w-[24ch] mx-auto">
+            Let's build something that runs.
+          </h2>
+          <div className="mt-8 flex flex-wrap gap-3 justify-center">
+            <a
+              href="mailto:pteja0960@gmail.com"
+              className="inline-flex items-center gap-2 bg-lime text-ink py-2 pr-4 pl-3 rounded-[min(1vw,12px)] text-sm font-medium hover:bg-paper transition-colors"
+            >
+              <span className="font-mono text-xs">✉</span> pteja0960@gmail.com
+            </a>
+            <a
+              href="tel:8247475257"
+              className="inline-flex items-center gap-2 py-2 pr-4 pl-3 rounded-[min(1vw,12px)] text-sm font-medium ring-1 ring-paper/25 hover:ring-paper transition-colors"
+            >
+              <span className="font-mono text-xs">✆</span> 8247475257
+            </a>
+          </div>
+          <p className="font-mono text-[11px] text-paper/40 mt-14">
+            © 2026 Gudavalli Prabhu Teja
+          </p>
+        </div>
+      </div>
+    </div>
   );
 }
