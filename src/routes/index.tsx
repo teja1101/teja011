@@ -8,6 +8,7 @@ import sgDetail from "@/assets/sg-detail.png.asset.json";
 import { ArchitectureDiagram, PipelineDiagram, ComponentTreeDiagram } from "@/components/diagrams";
 
 const GITHUB_URL = "https://github.com/teja1101/smartgrieve";
+const DDOS_GITHUB_URL = "https://github.com/teja1101/ddos-attacks-classification-and-xai";
 
 const shots = [
   { src: sgLanding.url, alt: "Smart Griev landing page with role-based sign in portal", cap: "Landing + role sign-in" },
@@ -516,12 +517,105 @@ function Index() {
         </div>
       </div>
 
+      {/* SECOND PROJECT */}
+      <div className="border-b border-ink/10">
+        <div className="mx-auto max-w-6xl px-5 sm:px-8 py-14 grid lg:grid-cols-12 gap-10">
+          <div className="lg:col-span-3">
+            <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-ink/50">
+              05 — More Work
+            </p>
+          </div>
+
+          <div className="lg:col-span-9">
+            <article className="bg-paper-dim rounded-[min(1.2vw,16px)] ring-1 ring-black/5 overflow-hidden">
+              <div className="grid md:grid-cols-12">
+                <div className="md:col-span-4 bg-ink text-paper p-6 flex flex-col justify-between min-h-64">
+                  <div>
+                    <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-lime">
+                      Cybersecurity · Machine Learning
+                    </p>
+                    <div className="mt-8 font-mono text-sm leading-7 text-paper/70" aria-hidden="true">
+                      <p>network_traffic.arff</p>
+                      <p className="text-lime">→ preprocess()</p>
+                      <p>→ classify_attack()</p>
+                      <p className="text-lime">→ explain_with_shap()</p>
+                    </div>
+                  </div>
+                  <p className="font-mono text-[11px] text-paper/40 mt-8">
+                    Detection you can explain.
+                  </p>
+                </div>
+
+                <div className="md:col-span-8 p-6 sm:p-8">
+                  <div className="flex flex-wrap items-start justify-between gap-3">
+                    <h2 className="font-display text-2xl sm:text-3xl font-semibold tracking-tight text-balance">
+                      DDoS Attack Classification &amp; Explainable AI
+                    </h2>
+                    <span className="font-mono text-[11px] bg-lime text-ink px-2 py-1 rounded-md">
+                      ML + XAI
+                    </span>
+                  </div>
+
+                  <p className="mt-4 text-base text-ink/70 text-pretty max-w-[62ch]">
+                    A machine-learning pipeline that classifies normal and malicious network traffic,
+                    evaluates DDoS detection performance, and uses SHAP explanations to show which
+                    traffic features influenced each prediction. The project combines accurate
+                    intrusion detection with transparent, analyst-friendly results.
+                  </p>
+
+                  <div className="mt-6 grid sm:grid-cols-3 gap-3">
+                    {[
+                      { k: "01", v: "Preprocess ARFF network-flow data" },
+                      { k: "02", v: "Compare classification models" },
+                      { k: "03", v: "Explain predictions with SHAP" },
+                    ].map((item) => (
+                      <div key={item.k} className="rounded-[min(1vw,10px)] bg-paper ring-1 ring-ink/10 p-4">
+                        <p className="font-mono text-[11px] text-brand">{item.k}</p>
+                        <p className="text-sm text-ink/70 mt-1">{item.v}</p>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="flex flex-wrap gap-1.5 mt-6">
+                    {[
+                      "Python",
+                      "Pandas",
+                      "NumPy",
+                      "Scikit-learn",
+                      "Random Forest",
+                      "XGBoost",
+                      "SHAP",
+                      "Matplotlib",
+                      "Seaborn",
+                    ].map((tool) => (
+                      <span key={tool} className="font-mono text-[11px] ring-1 ring-ink/15 px-2 py-1 rounded-md">
+                        {tool}
+                      </span>
+                    ))}
+                  </div>
+
+                  <a
+                    href={DDOS_GITHUB_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="View DDoS Attack Classification and Explainable AI on GitHub"
+                    className="mt-6 inline-flex items-center gap-2 bg-ink text-paper py-2 pr-4 pl-3 rounded-[min(1vw,12px)] text-sm font-medium hover:bg-brand transition-colors"
+                  >
+                    <span className="font-mono text-xs">{"</>"}</span> View project on GitHub
+                  </a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+
       {/* EDUCATION + CERTS */}
       <div className="border-b border-ink/10">
         <div className="mx-auto max-w-6xl px-5 sm:px-8 py-14 grid lg:grid-cols-12 gap-10">
           <div className="lg:col-span-6">
             <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-ink/50 mb-6">
-              05 — Education
+              06 — Education
             </p>
             <div className="space-y-1">
               {education.map((e, i) => (
@@ -545,7 +639,7 @@ function Index() {
 
           <div className="lg:col-span-6">
             <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-ink/50 mb-6">
-              06 — Certifications
+              07 — Certifications
             </p>
             <ul className="space-y-2">
               {certifications.map((c, i) => (
@@ -568,7 +662,7 @@ function Index() {
       <div id="contact" className="bg-ink text-paper">
         <div className="mx-auto max-w-6xl px-5 sm:px-8 py-16 sm:py-20 text-center">
           <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-paper/50 mb-5">
-            07 — Contact
+            08 — Contact
           </p>
           <h2 className="font-display text-4xl sm:text-5xl font-semibold tracking-tight text-balance max-w-[24ch] mx-auto">
             Let's build something that runs.
