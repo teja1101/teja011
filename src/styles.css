@@ -161,3 +161,44 @@
 .lg\:col-span-7 > .mt-6.flex.flex-wrap.gap-2.font-mono.text-\[11px\] {
   display: none;
 }
+
+/* Decorative graphics: subtle grid + soft geometric accents. */
+.min-h-screen.bg-paper.text-ink.font-sans {
+  background-color: var(--paper);
+  background-image:
+    radial-gradient(circle at 88% 8%, oklch(0.575 0.204 262 / 0.12) 0 90px, transparent 91px),
+    radial-gradient(circle at 8% 31%, oklch(0.891 0.199 118 / 0.16) 0 58px, transparent 59px),
+    radial-gradient(circle at 92% 55%, oklch(0.575 0.204 262 / 0.07) 0 135px, transparent 136px),
+    linear-gradient(oklch(0.203 0.012 268 / 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(0.203 0.012 268 / 0.035) 1px, transparent 1px);
+  background-size: auto, auto, auto, 44px 44px, 44px 44px;
+  background-position: center;
+}
+
+/* Give dark feature panels a light technical texture. */
+.bg-ink.text-paper {
+  background-image:
+    linear-gradient(135deg, transparent 0 48%, oklch(1 0 0 / 0.025) 48% 52%, transparent 52% 100%);
+  background-size: 22px 22px;
+}
+
+/* Slightly elevate interactive cards without changing the original layout. */
+.bg-paper-dim {
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.bg-paper-dim:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px oklch(0.203 0.012 268 / 0.08);
+}
+
+@media (max-width: 640px) {
+  .min-h-screen.bg-paper.text-ink.font-sans {
+    background-image:
+      radial-gradient(circle at 96% 12%, oklch(0.575 0.204 262 / 0.1) 0 58px, transparent 59px),
+      radial-gradient(circle at 2% 38%, oklch(0.891 0.199 118 / 0.12) 0 38px, transparent 39px),
+      linear-gradient(oklch(0.203 0.012 268 / 0.025) 1px, transparent 1px),
+      linear-gradient(90deg, oklch(0.203 0.012 268 / 0.025) 1px, transparent 1px);
+    background-size: auto, auto, 36px 36px, 36px 36px;
+  }
+}
