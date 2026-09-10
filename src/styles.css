@@ -1141,3 +1141,42 @@ img {
     transform: none !important;
   }
 }
+
+/* DDoS technical deep-dive and layered pipeline. */
+.ddos-deep-dive { margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid rgba(196,181,253,.2); }
+.ddos-depth-layout { display: grid; gap: 2rem; margin-top: 1.5rem; }
+.ddos-depth-stack { display: grid; gap: 1.3rem; perspective: 1000px; list-style: none; padding: 1rem .6rem 1.5rem; margin: 0; }
+.ddos-depth-stack li {
+  position: relative; padding: 1.1rem 1.25rem; border-radius: 14px;
+  border: 1px solid rgba(196,181,253,.4);
+  background: linear-gradient(125deg, #292342, #141b32 70%, #173044);
+  box-shadow: 3px 4px 0 #252341, 6px 8px 0 #10172a, 0 18px 28px rgba(0,0,0,.35);
+  transform: rotateX(9deg) rotateY(-8deg);
+  transition: transform 400ms ease, box-shadow 400ms ease;
+}
+.ddos-depth-stack li:nth-child(2) { margin-left: .5rem; border-color: rgba(165,180,252,.5); }
+.ddos-depth-stack li:nth-child(3) { margin-left: 1rem; border-color: rgba(103,232,249,.5); }
+.ddos-depth-stack strong { display: block; font-size: 1rem; color: #f5f3ff; }
+.ddos-depth-stack span { display: block; margin-top: .35rem; font-size: .875rem; color: #c7d2e5; line-height: 1.6; }
+.ddos-detail-grid { display: grid; gap: 1rem; margin-top: 1.5rem; }
+.ddos-detail-panel {
+  padding: 1.25rem; border-radius: 14px; border: 1px solid rgba(196,181,253,.2);
+  background: linear-gradient(140deg, rgba(139,92,246,.08), rgba(103,232,249,.025));
+  box-shadow: inset 0 1px rgba(255,255,255,.08), 0 7px 0 rgba(10,14,27,.5);
+}
+.ddos-detail-panel h4 { font-weight: 600; font-size: 1.0625rem; color: #e9e3ff; margin-bottom: .6rem; }
+.ddos-detail-panel p, .ddos-detail-panel li { color: #c7d2e5; font-size: 1rem; line-height: 1.7; }
+.ddos-detail-panel ul { padding-left: 1.2rem; list-style: disc; }
+.ddos-detail-panel li + li { margin-top: .5rem; }
+.ddos-metrics { margin-top: 1rem; display: grid; gap: .8rem; }
+.ddos-metrics dt { color: #a5f3fc; font-weight: 600; }
+.ddos-metrics dd { margin: .15rem 0 0; font-size: 1rem; color: #c7d2e5; line-height: 1.65; }
+@media (min-width: 768px) {
+  .ddos-depth-layout, .ddos-detail-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+}
+@media (hover:hover) and (pointer:fine) and (prefers-reduced-motion:no-preference) {
+  .ddos-depth-stack li:hover { transform: rotateX(0) rotateY(0) translateY(-5px); box-shadow: 3px 6px 0 #252341, 6px 10px 0 #10172a, 0 24px 35px rgba(103,232,249,.1); }
+}
+@media (max-width:767px), (prefers-reduced-motion:reduce) {
+  .ddos-depth-stack li { transform: none; margin-left: 0 !important; }
+}
