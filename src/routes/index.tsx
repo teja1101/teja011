@@ -142,7 +142,8 @@ const certifications = [
 
 function Index() {
   return (
-    <div className="min-h-screen bg-paper text-ink font-sans">
+    <div className="portfolio-shell min-h-screen bg-paper text-ink font-sans">
+      <div className="scroll-progress" aria-hidden="true" />
       {/* AVAILABILITY BANNER */}
       <div className="bg-lime text-ink">
         <div className="mx-auto max-w-6xl px-5 sm:px-8 py-2 flex items-center justify-center gap-2 font-mono text-[11px] uppercase tracking-[0.18em]">
@@ -177,7 +178,7 @@ function Index() {
       </div>
 
       {/* HERO */}
-      <div className="border-b border-ink/10">
+      <div className="hero-section border-b border-ink/10">
         <div className="mx-auto max-w-6xl px-5 sm:px-8 py-14 sm:py-20 grid lg:grid-cols-12 gap-10">
           <div className="lg:col-span-7">
             <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-ink/50 mb-5">
@@ -230,7 +231,7 @@ function Index() {
           </div>
 
           <div className="lg:col-span-5">
-            <div className="bg-ink text-paper rounded-[min(1.2vw,16px)] ring-1 ring-black/5 overflow-hidden">
+            <div className="project-showcase bg-ink text-paper rounded-[min(1.2vw,16px)] ring-1 ring-black/5 overflow-hidden">
               <div className="flex items-center gap-1.5 px-4 py-3 border-b border-paper/10">
                 <span className="size-2.5 rounded-full bg-lime/80" />
                 <span className="size-2.5 rounded-full bg-paper/40" />
@@ -395,7 +396,7 @@ function Index() {
                 width={1024}
                 height={576}
                 loading="lazy"
-                className="w-full aspect-[16/9] object-cover"
+                className="project-cover w-full aspect-[16/9] object-cover"
               />
               <div className="p-6">
                 <div className="flex items-center justify-between">
@@ -409,6 +410,29 @@ function Index() {
                   I built the full React front end: routing, auth-guarded dashboards, forms with
                   validation, filterable tables and the analytics charts.
                 </p>
+
+                <div className="project-snapshot mt-6 grid sm:grid-cols-3 gap-3">
+                  {[
+                    {
+                      label: "Problem",
+                      text: "Manual complaint handling is slow, inconsistent and difficult for citizens to track.",
+                    },
+                    {
+                      label: "Solution",
+                      text: "An AI-assisted workflow classifies, prioritises and routes each grievance automatically.",
+                    },
+                    {
+                      label: "My contribution",
+                      text: "Responsive React screens, role-based journeys, API states, validation, tables and charts.",
+                    },
+                  ].map((item) => (
+                    <div key={item.label} className="rounded-[min(1vw,12px)] ring-1 ring-paper/15 p-4">
+                      <p className="font-mono text-xs uppercase tracking-[0.16em] text-lime">{item.label}</p>
+                      <p className="text-sm text-paper/65 mt-2 text-pretty">{item.text}</p>
+                    </div>
+                  ))}
+                </div>
+
                 <div className="flex flex-wrap gap-1.5 mt-5">
                   {["React.js", "JavaScript", "CSS", "Django REST", "MySQL", "scikit-learn", "NLP", "Gemini API", "JWT"].map((t) => (
                     <span key={t} className="font-mono text-[11px] ring-1 ring-paper/20 px-2 py-1 rounded-md">
@@ -518,95 +542,170 @@ function Index() {
       </div>
 
       {/* SECOND PROJECT */}
-      <div className="border-b border-ink/10">
-        <div className="mx-auto max-w-6xl px-5 sm:px-8 py-14 grid lg:grid-cols-12 gap-10">
-          <div className="lg:col-span-3">
-            <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-ink/50">
-              05 — More Work
-            </p>
+      <div id="ddos-project" className="ddos-section border-b border-ink/10">
+        <div className="mx-auto max-w-6xl px-5 sm:px-8 py-14 lg:py-20">
+          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3 mb-8">
+            <div>
+              <p className="font-mono text-xs uppercase tracking-[0.22em] text-brand">05 — Cybersecurity Project</p>
+              <h2 className="font-display text-3xl sm:text-4xl font-semibold tracking-tight mt-3 text-balance">
+                Detection with an explanation.
+              </h2>
+            </div>
+            <span className="font-mono text-xs text-ink/50">Machine Learning · Network Security · XAI</span>
           </div>
 
-          <div className="lg:col-span-9">
-            <article className="bg-paper-dim rounded-[min(1.2vw,16px)] ring-1 ring-black/5 overflow-hidden">
-              <div className="grid md:grid-cols-12">
-                <div className="md:col-span-4 bg-ink text-paper p-6 flex flex-col justify-between min-h-64">
-                  <div>
-                    <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-lime">
-                      Cybersecurity · Machine Learning
+          <article className="ddos-card bg-paper-dim rounded-[min(1.2vw,18px)] ring-1 ring-black/5 overflow-hidden">
+            <div className="grid lg:grid-cols-12">
+              <div className="ddos-visual lg:col-span-4 bg-ink text-paper p-6 sm:p-8 flex flex-col justify-between min-h-[22rem]">
+                <div>
+                  <div className="flex items-center justify-between gap-3">
+                    <p className="font-mono text-xs uppercase tracking-[0.18em] text-lime">
+                      Traffic analysis
                     </p>
-                    <div className="mt-8 font-mono text-sm leading-7 text-paper/70" aria-hidden="true">
-                      <p>network_traffic.arff</p>
-                      <p className="text-lime">→ preprocess()</p>
-                      <p>→ classify_attack()</p>
-                      <p className="text-lime">→ explain_with_shap()</p>
-                    </div>
+                    <span className="live-dot" aria-label="Analysis active" />
                   </div>
-                  <p className="font-mono text-[11px] text-paper/40 mt-8">
-                    Detection you can explain.
-                  </p>
+
+                  <div className="network-visual mt-9" aria-hidden="true">
+                    <span className="network-line line-one" />
+                    <span className="network-line line-two" />
+                    <span className="network-line line-three" />
+                    <span className="network-node node-one" />
+                    <span className="network-node node-two" />
+                    <span className="network-node node-three" />
+                    <span className="network-node node-four" />
+                    <span className="network-core">ML</span>
+                  </div>
+
+                  <div className="pipeline-code mt-8 font-mono text-sm leading-7 text-paper/65" aria-hidden="true">
+                    <p><span className="text-paper/40">01</span> load(network_traffic.arff)</p>
+                    <p><span className="text-paper/40">02</span> preprocess + select_features</p>
+                    <p className="text-lime"><span className="text-paper/40">03</span> classify_attack()</p>
+                    <p><span className="text-paper/40">04</span> evaluate_models()</p>
+                    <p className="text-lime"><span className="text-paper/40">05</span> explain_with_shap()</p>
+                  </div>
+                </div>
+                <p className="font-mono text-xs text-paper/40 mt-8">
+                  From network flow → trustworthy decision
+                </p>
+              </div>
+
+              <div className="lg:col-span-8 p-6 sm:p-8 lg:p-10">
+                <div className="flex flex-wrap items-start justify-between gap-4">
+                  <div className="max-w-[42rem]">
+                    <p className="font-mono text-xs uppercase tracking-[0.18em] text-brand">Featured ML case study</p>
+                    <h3 className="font-display text-2xl sm:text-3xl lg:text-4xl font-semibold tracking-tight mt-2 text-balance">
+                      DDoS Attack Classification &amp; Explainable AI
+                    </h3>
+                  </div>
+                  <span className="font-mono text-xs bg-lime text-ink px-2.5 py-1.5 rounded-md">
+                    ML + SHAP
+                  </span>
                 </div>
 
-                <div className="md:col-span-8 p-6 sm:p-8">
-                  <div className="flex flex-wrap items-start justify-between gap-3">
-                    <h2 className="font-display text-2xl sm:text-3xl font-semibold tracking-tight text-balance">
-                      DDoS Attack Classification &amp; Explainable AI
-                    </h2>
-                    <span className="font-mono text-[11px] bg-lime text-ink px-2 py-1 rounded-md">
-                      ML + XAI
-                    </span>
-                  </div>
+                <p className="mt-5 text-base sm:text-lg text-ink/70 text-pretty max-w-[66ch]">
+                  A supervised machine-learning system for distinguishing legitimate traffic from
+                  Distributed Denial of Service attacks. It processes a labelled ARFF network-flow
+                  dataset, compares classification models and uses SHAP to reveal why traffic was
+                  marked normal or malicious—giving security analysts evidence they can act on.
+                </p>
 
-                  <p className="mt-4 text-base text-ink/70 text-pretty max-w-[62ch]">
-                    A machine-learning pipeline that classifies normal and malicious network traffic,
-                    evaluates DDoS detection performance, and uses SHAP explanations to show which
-                    traffic features influenced each prediction. The project combines accurate
-                    intrusion detection with transparent, analyst-friendly results.
-                  </p>
-
-                  <div className="mt-6 grid sm:grid-cols-3 gap-3">
-                    {[
-                      { k: "01", v: "Preprocess ARFF network-flow data" },
-                      { k: "02", v: "Compare classification models" },
-                      { k: "03", v: "Explain predictions with SHAP" },
-                    ].map((item) => (
-                      <div key={item.k} className="rounded-[min(1vw,10px)] bg-paper ring-1 ring-ink/10 p-4">
-                        <p className="font-mono text-[11px] text-brand">{item.k}</p>
-                        <p className="text-sm text-ink/70 mt-1">{item.v}</p>
+                <div className="mt-7 grid sm:grid-cols-2 gap-3">
+                  {[
+                    {
+                      n: "01",
+                      title: "Prepare the data",
+                      text: "Clean missing values, encode categorical fields, scale numerical features and inspect class balance.",
+                    },
+                    {
+                      n: "02",
+                      title: "Train & compare",
+                      text: "Evaluate Random Forest, XGBoost, Decision Tree and Logistic Regression on unseen traffic.",
+                    },
+                    {
+                      n: "03",
+                      title: "Measure reliability",
+                      text: "Compare accuracy, precision, recall, F1-score, ROC-AUC and the confusion matrix—not accuracy alone.",
+                    },
+                    {
+                      n: "04",
+                      title: "Explain predictions",
+                      text: "Use SHAP global and local views to show which flow features push each decision toward an attack class.",
+                    },
+                  ].map((step) => (
+                    <div key={step.n} className="process-card rounded-[min(1vw,12px)] bg-paper ring-1 ring-ink/10 p-4 sm:p-5">
+                      <div className="flex items-center gap-3">
+                        <span className="font-mono text-xs text-brand">{step.n}</span>
+                        <p className="font-display font-semibold">{step.title}</p>
                       </div>
-                    ))}
-                  </div>
+                      <p className="text-sm text-ink/65 mt-2 text-pretty">{step.text}</p>
+                    </div>
+                  ))}
+                </div>
 
-                  <div className="flex flex-wrap gap-1.5 mt-6">
+                <div className="mt-8">
+                  <p className="font-mono text-xs uppercase tracking-[0.18em] text-ink/50">Project pipeline</p>
+                  <div className="ddos-pipeline mt-3 flex flex-wrap items-center gap-2 font-mono text-xs">
                     {[
-                      "Python",
-                      "Pandas",
-                      "NumPy",
-                      "Scikit-learn",
-                      "Random Forest",
-                      "XGBoost",
-                      "SHAP",
-                      "Matplotlib",
-                      "Seaborn",
-                    ].map((tool) => (
-                      <span key={tool} className="font-mono text-[11px] ring-1 ring-ink/15 px-2 py-1 rounded-md">
-                        {tool}
+                      "ARFF dataset",
+                      "EDA + cleaning",
+                      "Feature engineering",
+                      "Model comparison",
+                      "Performance metrics",
+                      "SHAP insights",
+                    ].map((step, index, items) => (
+                      <span key={step} className="flex items-center gap-2">
+                        <span className="pipeline-pill ring-1 ring-ink/15 px-2.5 py-1.5 rounded-md">{step}</span>
+                        {index < items.length - 1 && <span className="text-brand" aria-hidden="true">→</span>}
                       </span>
                     ))}
                   </div>
-
-                  <a
-                    href={DDOS_GITHUB_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="View DDoS Attack Classification and Explainable AI on GitHub"
-                    className="mt-6 inline-flex items-center gap-2 bg-ink text-paper py-2 pr-4 pl-3 rounded-[min(1vw,12px)] text-sm font-medium hover:bg-brand transition-colors"
-                  >
-                    <span className="font-mono text-xs">{"</>"}</span> View project on GitHub
-                  </a>
                 </div>
+
+                <div className="mt-8 grid sm:grid-cols-3 gap-3">
+                  {[
+                    { title: "Transparent", text: "Feature-level reasoning instead of unexplained alerts." },
+                    { title: "Actionable", text: "Insights help analysts investigate suspicious traffic faster." },
+                    { title: "Scalable", text: "A reusable pipeline for large labelled network datasets." },
+                  ].map((outcome) => (
+                    <div key={outcome.title} className="outcome-card border-l-2 border-brand pl-4 py-1">
+                      <p className="font-display font-semibold">{outcome.title}</p>
+                      <p className="text-sm text-ink/60 mt-1">{outcome.text}</p>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="flex flex-wrap gap-1.5 mt-8">
+                  {[
+                    "Python",
+                    "Pandas",
+                    "NumPy",
+                    "Scikit-learn",
+                    "Random Forest",
+                    "XGBoost",
+                    "SHAP",
+                    "Matplotlib",
+                    "Seaborn",
+                    "ARFF",
+                  ].map((tool) => (
+                    <span key={tool} className="tech-chip font-mono text-xs ring-1 ring-ink/15 px-2.5 py-1 rounded-md">
+                      {tool}
+                    </span>
+                  ))}
+                </div>
+
+                <a
+                  href={DDOS_GITHUB_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="View DDoS Attack Classification and Explainable AI on GitHub"
+                  className="shine-button mt-7 inline-flex items-center justify-center gap-2 bg-brand text-ink py-3 px-5 rounded-[min(1vw,12px)] text-sm font-semibold hover:bg-ink transition-colors"
+                >
+                  <span className="font-mono text-xs">{"</>"}</span> View complete project on GitHub
+                  <span aria-hidden="true">↗</span>
+                </a>
               </div>
-            </article>
-          </div>
+            </div>
+          </article>
         </div>
       </div>
 
