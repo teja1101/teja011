@@ -523,6 +523,114 @@ function Index() {
                   <PipelineDiagram />
                 </div>
 
+
+                <section className="ddos-deep-dive" aria-labelledby="smartgriev-details-heading">
+                  <p className="font-mono text-xs uppercase tracking-[0.18em] text-brand">Inside SMART-GRIEV</p>
+                  <h3 id="smartgriev-details-heading" className="font-display text-2xl font-semibold mt-2">
+                    One complaint. Clear ownership at every step.
+                  </h3>
+                  <p className="mt-4 text-base text-paper/70 leading-relaxed">
+                    SMART-GRIEV connects citizens reporting public-service issues with the officers
+                    responsible for resolving them. Its central idea is to combine structured complaint
+                    records with AI-assisted routing, so users can see both where an issue belongs
+                    and how it is progressing.
+                  </p>
+                  <div className="ddos-detail-grid">
+                    {[
+                      {
+                        title: "Citizen experience",
+                        text: "Citizens describe an issue with a title, description and location. The complaint record includes its department, priority, submission date and latest update, making follow-up more informative than a simple acknowledgement.",
+                      },
+                      {
+                        title: "Officer & admin experience",
+                        text: "The React app selects a dashboard according to the signed-in user’s role. The documented workflow gives officers responsibility for assigned complaints, while administrators manage officer accounts and review system-level analytics.",
+                      },
+                      {
+                        title: "Complaint lifecycle",
+                        text: "The data model defines Submitted, Assigned, In Progress, Resolved, Closed and Rejected. These statuses distinguish receipt, ownership, active work and final disposition; they are available states, not a rule that every complaint must pass through all six.",
+                      },
+                      {
+                        title: "AI analysis fields",
+                        text: "The NLP analysis model carries a predicted department, confidence score, urgency, keywords and sentiment, with optional suggested steps. This gives the interface more context than a category label alone. Confidence indicates model certainty, not proof that routing is correct.",
+                      },
+                      {
+                        title: "Department coverage",
+                        text: "The source defines eleven categories: Public Works, Water Supply, Electricity, Transportation, Health, Education, Police, Revenue, Environment, Consumer Affairs and Others. Multi-department routing is also described in the project documentation for issues spanning multiple services.",
+                      },
+                      {
+                        title: "Frontend structure",
+                        text: "React and TypeScript separate the landing page and citizen, officer and admin dashboards. The app restores saved user context at startup, shows a loading state, provides dashboard and profile navigation, and clears the saved session when the user signs out.",
+                      },
+                    ].map((detail) => (
+                      <div key={detail.title} className="ddos-detail-panel">
+                        <h4>{detail.title}</h4>
+                        <p>{detail.text}</p>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="ddos-detail-panel mt-6">
+                    <h4>Example journey: a broken street light</h4>
+                    <ol className="list-decimal pl-5 space-y-3 text-base text-paper/70 leading-relaxed">
+                      <li>A citizen reports the location and explains the safety concern.</li>
+                      <li>The documented NLP workflow identifies the relevant department and returns urgency and confidence information.</li>
+                      <li>The complaint is assigned for officer attention and its status can be updated as work progresses.</li>
+                      <li>The citizen follows the record, while administrators review complaint volumes and resolution statistics.</li>
+                    </ol>
+                    <p className="mt-3">Illustrative workflow, not a live complaint or measured result.</p>
+                  </div>
+
+                  <div className="ddos-detail-grid">
+                    <div className="ddos-detail-panel">
+                      <h4>Documented API responsibilities</h4>
+                      <ul>
+                        <li>Authentication: registration and sign-in.</li>
+                        <li>Complaints: submission, role-filtered lists and status updates.</li>
+                        <li>Administration: officer creation and department lookup.</li>
+                        <li>Analytics: totals, pending and resolved counts, and resolution-time summaries.</li>
+                      </ul>
+                      <p className="mt-3">
+                        The README describes a Django REST backend alongside older backend references.
+                        These are documented responsibilities, not an independently verified production deployment.
+                      </p>
+                    </div>
+                    <div className="ddos-detail-panel">
+                      <h4>My frontend contribution</h4>
+                      <p>
+                        The frontend work highlighted in this case study covers role-based journeys,
+                        responsive dashboard layouts, complaint forms, API-connected tables and
+                        analytics views. The app shell demonstrates conditional dashboard rendering,
+                        loading-state handling, profile presentation and sign-out behaviour.
+                      </p>
+                      <p className="mt-3">
+                        These responsibilities connect component design with practical state management
+                        and the data needed by different users.
+                      </p>
+                    </div>
+                    <div className="ddos-detail-panel">
+                      <h4>Reliability &amp; security considerations</h4>
+                      <p>
+                        The documentation describes input validation, password hashing, rate limiting,
+                        standard API errors and retry handling. These complement the user-facing flow,
+                        but hiding a dashboard is not an access-control boundary: authorization must
+                        also be enforced by the backend.
+                      </p>
+                    </div>
+                    <div className="ddos-detail-panel">
+                      <h4>Future development</h4>
+                      <p>
+                        The documented roadmap includes multilingual and voice-based complaint entry,
+                        email or SMS notifications, live WebSocket updates, PDF reports and geographic
+                        heat maps. These remain future enhancements rather than claims of completed features.
+                      </p>
+                    </div>
+                  </div>
+                  <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer"
+                    className="inline-flex items-center min-h-11 mt-6 text-brand underline underline-offset-4">
+                    Explore the SMART-GRIEV source and documentation ↗
+                  </a>
+                </section>
+
                 {/* CHALLENGES */}
                 <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-paper/50 mt-8 mb-3">
                   Problems I had to solve
