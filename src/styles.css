@@ -257,3 +257,244 @@ img {
     background-size: auto, auto, 36px 36px, 36px 36px;
   }
 }
+
+/* -------------------------------------------------------------------------- */
+/* UI / UX refinement layer                                                   */
+/* -------------------------------------------------------------------------- */
+
+html {
+  scroll-padding-top: 6.5rem;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  min-width: 320px;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+::selection {
+  background: oklch(0.78 0.19 145 / 0.30);
+  color: var(--foreground);
+}
+
+/* Restore hierarchy that was lost when all opacity text became fully bright. */
+.text-ink\/40 { color: oklch(0.965 0.006 150 / 0.48) !important; }
+.text-ink\/50 { color: oklch(0.965 0.006 150 / 0.60) !important; }
+.text-ink\/60 { color: oklch(0.965 0.006 150 / 0.68) !important; }
+.text-ink\/70 { color: oklch(0.965 0.006 150 / 0.78) !important; }
+.text-paper\/40 { color: oklch(0.965 0.006 150 / 0.48) !important; }
+.text-paper\/50 { color: oklch(0.965 0.006 150 / 0.60) !important; }
+.text-paper\/60 { color: oklch(0.965 0.006 150 / 0.68) !important; }
+.text-paper\/70 { color: oklch(0.965 0.006 150 / 0.78) !important; }
+
+/* Keep important destinations visible after smooth-scroll navigation. */
+#work,
+#frontend,
+#skills,
+#exp,
+#contact {
+  scroll-margin-top: 6.5rem;
+}
+
+/* Sticky translucent navigation improves orientation on long case-study pages. */
+.min-h-screen.bg-paper.text-ink.font-sans > .border-b:nth-child(2) {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: oklch(0.075 0.008 150 / 0.90);
+  border-bottom-color: oklch(0.78 0.19 145 / 0.14);
+  -webkit-backdrop-filter: blur(16px) saturate(1.15);
+  backdrop-filter: blur(16px) saturate(1.15);
+}
+
+.min-h-screen.bg-paper.text-ink.font-sans > .border-b:nth-child(2) nav a {
+  position: relative;
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  color: oklch(0.965 0.006 150 / 0.70);
+  white-space: nowrap;
+}
+
+.min-h-screen.bg-paper.text-ink.font-sans > .border-b:nth-child(2) nav a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 100%;
+  bottom: 7px;
+  height: 1px;
+  background: var(--brand);
+  transition: right 160ms ease;
+}
+
+.min-h-screen.bg-paper.text-ink.font-sans > .border-b:nth-child(2) nav a:hover,
+.min-h-screen.bg-paper.text-ink.font-sans > .border-b:nth-child(2) nav a:focus-visible {
+  color: var(--brand);
+}
+
+.min-h-screen.bg-paper.text-ink.font-sans > .border-b:nth-child(2) nav a:hover::after,
+.min-h-screen.bg-paper.text-ink.font-sans > .border-b:nth-child(2) nav a:focus-visible::after {
+  right: 0;
+}
+
+/* Give the hero a clearer CTA hierarchy and comfortable touch targets. */
+.min-h-screen.bg-paper.text-ink.font-sans > .border-b:nth-child(3) h1 {
+  letter-spacing: -0.045em;
+}
+
+.min-h-screen.bg-paper.text-ink.font-sans > .border-b:nth-child(3) .mt-8.flex.flex-wrap.gap-3.items-center > a {
+  min-height: 46px;
+  justify-content: center;
+  border: 1px solid transparent;
+}
+
+.min-h-screen.bg-paper.text-ink.font-sans > .border-b:nth-child(3) .mt-8.flex.flex-wrap.gap-3.items-center > a[href^="mailto:"] {
+  box-shadow: 0 10px 28px oklch(0.78 0.19 145 / 0.13);
+}
+
+.min-h-screen.bg-paper.text-ink.font-sans > .border-b:nth-child(3) .mt-8.flex.flex-wrap.gap-3.items-center > a[download] {
+  background: transparent !important;
+  color: var(--foreground) !important;
+  border-color: oklch(0.78 0.19 145 / 0.45);
+}
+
+.min-h-screen.bg-paper.text-ink.font-sans > .border-b:nth-child(3) .mt-8.flex.flex-wrap.gap-3.items-center > a[download]:hover {
+  background: oklch(0.78 0.19 145 / 0.10) !important;
+  border-color: var(--brand);
+}
+
+.min-h-screen.bg-paper.text-ink.font-sans > .border-b:nth-child(3) .mt-8.flex.flex-wrap.gap-3.items-center > a[href^="tel:"],
+.min-h-screen.bg-paper.text-ink.font-sans > .border-b:nth-child(3) .mt-8.flex.flex-wrap.gap-3.items-center > a[target="_blank"] {
+  color: oklch(0.965 0.006 150 / 0.72);
+}
+
+/* Clear, consistent interactive affordances. */
+a,
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline-width: 2px;
+  outline-color: var(--brand);
+  outline-offset: 4px;
+  border-radius: 0.45rem;
+}
+
+/* Floating LinkedIn action now belongs to the black + green visual system. */
+a[aria-label*="LinkedIn"] {
+  bottom: calc(1rem + env(safe-area-inset-bottom));
+  right: 1rem;
+  background: oklch(0.105 0.012 150 / 0.96) !important;
+  color: var(--brand) !important;
+  border: 1px solid oklch(0.78 0.19 145 / 0.34);
+  box-shadow: 0 14px 34px oklch(0 0 0 / 0.42), 0 0 24px oklch(0.78 0.19 145 / 0.06);
+}
+
+a[aria-label*="LinkedIn"]:hover {
+  background: oklch(0.17 0.035 145) !important;
+  transform: translateY(-2px);
+}
+
+a[aria-label*="LinkedIn"] > span:first-child {
+  background: var(--brand) !important;
+  color: oklch(0.075 0.008 150) !important;
+}
+
+/* Keep image behavior predictable and avoid layout overflow. */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Only use hover elevation on devices that actually have a hover pointer. */
+@media (hover: none) {
+  .bg-paper-dim:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}
+
+/* Mobile navigation remains available instead of disappearing completely. */
+@media (max-width: 767px) {
+  html {
+    scroll-padding-top: 9.5rem;
+  }
+
+  #work,
+  #frontend,
+  #skills,
+  #exp,
+  #contact {
+    scroll-margin-top: 9.5rem;
+  }
+
+  .min-h-screen.bg-paper.text-ink.font-sans > .border-b:nth-child(2) > div {
+    flex-wrap: wrap;
+    row-gap: 0.35rem;
+    padding-top: 0.65rem;
+    padding-bottom: 0.55rem;
+  }
+
+  .min-h-screen.bg-paper.text-ink.font-sans > .border-b:nth-child(2) nav {
+    display: flex !important;
+    order: 3;
+    width: 100%;
+    gap: 1.15rem;
+    overflow-x: auto;
+    padding-top: 0.1rem;
+    padding-bottom: 0.05rem;
+    scrollbar-width: none;
+    overscroll-behavior-x: contain;
+  }
+
+  .min-h-screen.bg-paper.text-ink.font-sans > .border-b:nth-child(2) nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .min-h-screen.bg-paper.text-ink.font-sans > .border-b:nth-child(3) .mt-8.flex.flex-wrap.gap-3.items-center > a {
+    min-height: 48px;
+  }
+
+  .min-h-screen > .bg-lime.text-ink > div {
+    line-height: 1.45;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .min-h-screen.bg-paper.text-ink.font-sans > .border-b:nth-child(3) .mt-8.flex.flex-wrap.gap-3.items-center {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+  }
+
+  .min-h-screen.bg-paper.text-ink.font-sans > .border-b:nth-child(3) .mt-8.flex.flex-wrap.gap-3.items-center > a[href^="mailto:"],
+  .min-h-screen.bg-paper.text-ink.font-sans > .border-b:nth-child(3) .mt-8.flex.flex-wrap.gap-3.items-center > a[download] {
+    grid-column: 1 / -1;
+  }
+
+  .min-h-screen.bg-paper.text-ink.font-sans > .border-b:nth-child(3) .mt-8.flex.flex-wrap.gap-3.items-center > a[href^="mailto:"] {
+    overflow-wrap: anywhere;
+  }
+}
+
+/* Respect accessibility preferences and reduce distracting motion. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
