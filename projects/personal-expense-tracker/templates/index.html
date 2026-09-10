@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personal Expense Tracker</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div>
+      <p class="eyebrow">PYTHON + FLASK + SQLITE</p>
+      <h1>Personal Expense Tracker</h1>
+      <p class="lede">Record income, understand spending and keep your monthly budget visible.</p>
+    </div>
+    <a class="button secondary" href="{{ url_for('export_csv') }}">Export CSV</a>
+  </header>
+
+  <main class="container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="messages">
+          {% for category, message in messages %}
+            <div class="message {{ category }}">{{ message }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <section class="stats">
+      <article class="stat"><span>Total income</span><strong>₹{{ '%.2f'|format(total_income) }}</strong></article>
+      <article class="stat"><span>Total expense</span><strong>₹{{ '%.2f'|format(total_expense) }}</strong></article>
+      <article class="stat"><span>Balance</span><strong>₹{{ '%.2f'|format(balance) }}</strong></article>
+      <article class="stat"><span>Transactions</span><strong>{{ transactions|length }}</strong></article>
+    </section>
+
+    <section class="panel">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">ADD NEW</p>
+          <h2>Record a transaction</h2>
+        </div>
+      </div>
+      <form class="transaction-form" method="POST" action="{{ url_for('add_transaction') }}">
+        <label>Type
+          <select name="transaction_type" required>
+            <option value="Expense">Expense</option>
+            <option value="Income">Income</option>
+          </select>
+        </label>
+        <label>Amount
+          <input type="number" name="amount" min="0.01" step="0.01" placeholder="1500" required>
+        </label>
+        <label>Category
+          <select name="category" required>
+            {% for category in categories %}<option>{{ category }}</option>{% endfor %}
+          </select>
+        </label>
+        <label>Date
+          <input type="date" name="transaction_date" value="{{ today }}" required>
+        </label>
+        <label class="wide">Description
+          <input type="text" name="description" placeholder="Groceries, salary, fuel...">
+        </label>
+        <button class="button primary wide" type="submit">Add Transaction</button>
+      </form>
+    </section>
+
+    <section class="charts-grid">
+      <article class="panel chart-panel">
+        <div class="section-head"><div><p class="eyebrow">SPENDING</p><h2>Expenses by category</h2></div></div>
+        <canvas id="categoryChart"></canvas>
+      </article>
+      <article class="panel chart-panel">
+        <div class="section-head"><div><p class="eyebrow">MONTHLY</p><h2>Income vs expense</h2></div></div>
+        <canvas id="monthlyChart"></canvas>
+      </article>
+    </section>
+
+    <section class="panel">
+      <div class="section-head responsive">
+        <div><p class="eyebrow">HISTORY</p><h2>Transactions</h2></div>
+        <form class="filters" method="GET">
+          <input type="month" name="month" value="{{ selected_month }}">
+          <select name="category">
+            <option value="">All categories</option>
+            {% for category in categories %}
+              <option value="{{ category }}" {% if selected_category == category %}selected{% endif %}>{{ category }}</option>
+            {% endfor %}
+          </select>
+          <select name="type">
+            <option value="">All types</option>
+            <option value="Income" {% if selected_type == 'Income' %}selected{% endif %}>Income</option>
+            <option value="Expense" {% if selected_type == 'Expense' %}selected{% endif %}>Expense</option>
+          </select>
+          <button class="button secondary" type="submit">Filter</button>
+          <a class="button ghost" href="{{ url_for('index') }}">Reset</a>
+        </form>
+      </div>
+
+      {% if transactions %}
+        <div class="transaction-list">
+          {% for item in transactions %}
+            <article class="transaction-row">
+              <div class="transaction-main">
+                <span class="type-dot {{ item['transaction_type']|lower }}"></span>
+                <div>
+                  <h3>{{ item['category'] }}</h3>
+                  <p>{{ item['description'] or 'No description' }} · {{ item['transaction_date'] }}</p>
+                </div>
+              </div>
+              <strong class="amount {{ item['transaction_type']|lower }}">
+                {% if item['transaction_type'] == 'Income' %}+{% else %}-{% endif %}₹{{ '%.2f'|format(item['amount']) }}
+              </strong>
+              <details>
+                <summary>Edit</summary>
+                <form class="edit-form" method="POST" action="{{ url_for('edit_transaction', transaction_id=item['id']) }}">
+                  <select name="transaction_type">
+                    <option {% if item['transaction_type'] == 'Expense' %}selected{% endif %}>Expense</option>
+                    <option {% if item['transaction_type'] == 'Income' %}selected{% endif %}>Income</option>
+                  </select>
+                  <input type="number" name="amount" min="0.01" step="0.01" value="{{ item['amount'] }}" required>
+                  <select name="category">
+                    {% for category in categories %}<option {% if item['category'] == category %}selected{% endif %}>{{ category }}</option>{% endfor %}
+                  </select>
+                  <input type="date" name="transaction_date" value="{{ item['transaction_date'] }}" required>
+                  <input type="text" name="description" value="{{ item['description'] }}">
+                  <button class="button primary" type="submit">Save Changes</button>
+                </form>
+              </details>
+              <form method="POST" action="{{ url_for('delete_transaction', transaction_id=item['id']) }}" onsubmit="return confirm('Delete this transaction?');">
+                <button class="delete" type="submit">Delete</button>
+              </form>
+            </article>
+          {% endfor %}
+        </div>
+      {% else %}
+        <div class="empty"><h3>No transactions yet</h3><p>Add your first income or expense above.</p></div>
+      {% endif %}
+    </section>
+  </main>
+
+  <footer>Built with Python, Flask, SQLite & Chart.js</footer>
+
+  <script>
+    const categoryLabels = {{ category_labels|tojson }};
+    const categoryValues = {{ category_values|tojson }};
+    const monthLabels = {{ month_labels|tojson }};
+    const monthIncome = {{ month_income|tojson }};
+    const monthExpense = {{ month_expense|tojson }};
+
+    new Chart(document.getElementById('categoryChart'), {
+      type: 'doughnut',
+      data: { labels: categoryLabels, datasets: [{ data: categoryValues }] },
+      options: { responsive: true, plugins: { legend: { position: 'bottom' } } }
+    });
+
+    new Chart(document.getElementById('monthlyChart'), {
+      type: 'bar',
+      data: {
+        labels: monthLabels,
+        datasets: [
+          { label: 'Income', data: monthIncome },
+          { label: 'Expense', data: monthExpense }
+        ]
+      },
+      options: { responsive: true, scales: { y: { beginAtZero: true } } }
+    });
+  </script>
+</body>
+</html>
