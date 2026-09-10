@@ -1,3 +1,4 @@
+import { CaseStudyMetadata, CaseStudyResearch, CaseStudyReflection } from "@/components/case-study-research";
 import smartGriev from "@/assets/smart-griev.jpg";
 import sgLanding from "@/assets/sg-landing.png.asset.json";
 import sgAdmin from "@/assets/sg-admin.png.asset.json";
@@ -102,11 +103,11 @@ export function ProjectCaseStudy({ project }: { project: "smart" | "ddos" }) {
           </figure>
         )}
         <nav className="case-jump" aria-label="Case study sections">
-          <a href="#overview">Overview</a><a href="#problem">Problem</a><a href="#solution">Solution</a><a href="#process">Process &amp; details</a>
+          <a href="#overview">Overview</a><a href="#problem">Problem</a><a href="#solution">Solution</a><a href="#strategy">Strategy</a><a href="#discovery">Discovery</a><a href="#ideation">Ideation</a><a href="#design">Design</a><a href="#process">Implementation</a><a href="#reflection">Reflection</a>
         </nav>
         <section className="case-chapter" id="overview">
           <p className="case-eyebrow">01 / Overview</p>
-          <div><h2>About the project</h2><p>{item.overview}</p><h3>Project goal</h3><p>{item.goal}</p></div>
+          <div><h2>About the project</h2><p>{item.overview}</p><h3>Project goal</h3><p>{item.goal}</p><CaseStudyMetadata project={project} /></div>
         </section>
         <section className="case-chapter" id="problem">
           <p className="case-eyebrow">02 / Problem</p>
@@ -116,14 +117,16 @@ export function ProjectCaseStudy({ project }: { project: "smart" | "ddos" }) {
           <p className="case-eyebrow">03 / Solution</p>
           <div><h2>The approach</h2><p>{item.solution}</p></div>
         </section>
+        <CaseStudyResearch project={project} />
         <section className="case-process" id="process">
-          <p className="case-eyebrow">04 / Process &amp; implementation</p>
+          <p className="case-eyebrow">08 / Implementation &amp; visuals</p>
           <h2>Explore the work</h2>
           <p className="case-process-intro">Workflow, technical decisions and project details.</p>
           <div className="case-legacy">
             {project === "smart" ? <SmartDetails /> : <DdosDetails />}
           </div>
         </section>
+        <CaseStudyReflection project={project} />
         <footer className="case-next">
           <span className="case-eyebrow">Next project</span>
           <a href={item.next}>{item.nextTitle} <span aria-hidden="true">↗</span></a>
@@ -217,7 +220,7 @@ function SmartDetails() {
                   ))}
                 </div>
                 <p className="mt-4 font-mono text-[11px] text-paper/50">
-                  92.4% classification accuracy · multi-department routing · JWT + role-based access
+                  Documentation reports 92.4% classification accuracy (not independently reproduced) · multi-department routing · documented role-based access
                 </p>
 
                 {/* SCREENS */}
