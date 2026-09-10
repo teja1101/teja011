@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Application Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header class="navbar">
+        <div>
+            <p class="eyebrow">PYTHON + FLASK PROJECT</p>
+            <h1>Job Application Tracker</h1>
+        </div>
+        <a class="btn btn-secondary" href="{{ url_for('export_csv') }}">Export CSV</a>
+    </header>
+
+    <main class="container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="messages">
+                    {% for category, message in messages %}
+                        <div class="message {{ category }}">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <section class="stats-grid">
+            <article class="stat-card">
+                <span>Total Applications</span>
+                <strong>{{ total }}</strong>
+            </article>
+            <article class="stat-card">
+                <span>Applied</span>
+                <strong>{{ applied }}</strong>
+            </article>
+            <article class="stat-card">
+                <span>Interviews</span>
+                <strong>{{ interviews }}</strong>
+            </article>
+            <article class="stat-card">
+                <span>Offers</span>
+                <strong>{{ offers }}</strong>
+            </article>
+        </section>
+
+        <section class="panel">
+            <div class="panel-heading">
+                <div>
+                    <p class="eyebrow">ADD NEW</p>
+                    <h2>Track an application</h2>
+                </div>
+            </div>
+
+            <form action="{{ url_for('add_job') }}" method="POST" class="job-form">
+                <div class="field">
+                    <label>Company</label>
+                    <input type="text" name="company" placeholder="e.g. Deloitte" required>
+                </div>
+
+                <div class="field">
+                    <label>Role</label>
+                    <input type="text" name="role" placeholder="e.g. Data Associate" required>
+                </div>
+
+                <div class="field">
+                    <label>Status</label>
+                    <select name="status">
+                        <option>Applied</option>
+                        <option>Interview</option>
+                        <option>Offer</option>
+                        <option>Rejected</option>
+                        <option>On Hold</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label>Applied Date</label>
+                    <input type="date" name="applied_date" required>
+                </div>
+
+                <div class="field span-2">
+                    <label>Job Link</label>
+                    <input type="url" name="link" placeholder="https://...">
+                </div>
+
+                <div class="field span-2">
+                    <label>Notes</label>
+                    <textarea name="notes" rows="3" placeholder="Interview date, recruiter name, follow-up notes..."></textarea>
+                </div>
+
+                <button class="btn btn-primary span-2" type="submit">Add Application</button>
+            </form>
+        </section>
+
+        <section class="panel">
+            <div class="panel-heading responsive-heading">
+                <div>
+                    <p class="eyebrow">APPLICATIONS</p>
+                    <h2>Your job search</h2>
+                </div>
+
+                <form method="GET" class="filters">
+                    <input type="text" name="search" value="{{ search }}" placeholder="Search company or role">
+                    <select name="status">
+                        <option value="">All statuses</option>
+                        {% for status in ["Applied", "Interview", "Offer", "Rejected", "On Hold"] %}
+                            <option value="{{ status }}" {% if status_filter == status %}selected{% endif %}>{{ status }}</option>
+                        {% endfor %}
+                    </select>
+                    <button class="btn btn-secondary" type="submit">Filter</button>
+                    <a class="btn btn-ghost" href="{{ url_for('index') }}">Reset</a>
+                </form>
+            </div>
+
+            {% if applications %}
+                <div class="cards-grid">
+                    {% for job in applications %}
+                        <article class="job-card">
+                            <div class="job-top">
+                                <div>
+                                    <h3>{{ job["role"] }}</h3>
+                                    <p>{{ job["company"] }}</p>
+                                </div>
+                                <span class="badge status-{{ job['status']|lower|replace(' ', '-') }}">
+                                    {{ job["status"] }}
+                                </span>
+                            </div>
+
+                            <div class="job-meta">
+                                <span>Applied {{ job["applied_date"] }}</span>
+                                {% if job["link"] %}
+                                    <a href="{{ job['link'] }}" target="_blank" rel="noopener">View job ↗</a>
+                                {% endif %}
+                            </div>
+
+                            {% if job["notes"] %}
+                                <p class="notes">{{ job["notes"] }}</p>
+                            {% endif %}
+
+                            <details>
+                                <summary>Edit application</summary>
+                                <form action="{{ url_for('edit_job', job_id=job['id']) }}" method="POST" class="edit-form">
+                                    <input type="text" name="company" value="{{ job['company'] }}" required>
+                                    <input type="text" name="role" value="{{ job['role'] }}" required>
+
+                                    <select name="status">
+                                        {% for status in ["Applied", "Interview", "Offer", "Rejected", "On Hold"] %}
+                                            <option {% if job["status"] == status %}selected{% endif %}>{{ status }}</option>
+                                        {% endfor %}
+                                    </select>
+
+                                    <input type="date" name="applied_date" value="{{ job['applied_date'] }}" required>
+                                    <input type="url" name="link" value="{{ job['link'] }}" placeholder="Job link">
+                                    <textarea name="notes" rows="2" placeholder="Notes">{{ job["notes"] }}</textarea>
+
+                                    <button class="btn btn-primary" type="submit">Save Changes</button>
+                                </form>
+                            </details>
+
+                            <form action="{{ url_for('delete_job', job_id=job['id']) }}" method="POST"
+                                  onsubmit="return confirm('Delete this application?');">
+                                <button class="delete-btn" type="submit">Delete</button>
+                            </form>
+                        </article>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="empty-state">
+                    <h3>No applications found</h3>
+                    <p>Add your first job application above or change your filters.</p>
+                </div>
+            {% endif %}
+        </section>
+    </main>
+
+    <footer>
+        Built with Python, Flask & SQLite
+    </footer>
+</body>
+</html>
