@@ -693,6 +693,104 @@ function Index() {
                   ))}
                 </div>
 
+
+                <section className="ddos-deep-dive" aria-labelledby="ddos-deep-heading">
+                  <p className="font-mono text-xs uppercase tracking-[0.18em] text-brand">Technical deep dive</p>
+                  <h3 id="ddos-deep-heading" className="font-display text-2xl font-semibold mt-2">
+                    From raw traffic to an explainable decision
+                  </h3>
+                  <div className="ddos-depth-layout">
+                    <div className="ddos-detail-panel">
+                      <h4>The challenge</h4>
+                      <p>
+                        DDoS attacks overwhelm services with traffic, but an alert alone does not
+                        explain what made a flow suspicious. This project brings classification
+                        and interpretation together: identify potentially malicious traffic, then
+                        expose the features behind the model decision for analyst review.
+                      </p>
+                      <p className="mt-3">
+                        The documented workflow uses labelled ARFF records and an offline learning
+                        pipeline. It is a detection and analysis project, not an automatic traffic-blocking service.
+                      </p>
+                    </div>
+                    <figure>
+                      <figcaption className="font-mono text-xs uppercase tracking-[0.15em] text-brand mb-3">
+                        Three processing layers
+                      </figcaption>
+                      <ol className="ddos-depth-stack">
+                        <li><strong>01 / Data layer</strong><span>ARFF records, cleaning, encoding and feature preparation</span></li>
+                        <li><strong>02 / Learning layer</strong><span>Train classifiers and compare held-out predictions</span></li>
+                        <li><strong>03 / Explanation layer</strong><span>Inspect SHAP feature contributions and review results</span></li>
+                      </ol>
+                    </figure>
+                  </div>
+                  <div className="ddos-detail-grid">
+                    <div className="ddos-detail-panel">
+                      <h4>Data preparation</h4>
+                      <ul>
+                        <li>Inspect the distribution of normal and attack labels and look for missing or inconsistent values.</li>
+                        <li>Encode categorical fields and scale numerical inputs where the model requires it.</li>
+                        <li>Examine network-flow attributes such as duration, packet length and byte rate.</li>
+                        <li>Separate training and evaluation data; fit preprocessing on the training partition to avoid leaking test information.</li>
+                      </ul>
+                    </div>
+                    <div className="ddos-detail-panel">
+                      <h4>Why compare models?</h4>
+                      <p>
+                        Random Forest combines multiple decision trees, while XGBoost builds a sequence
+                        of trees that correct earlier errors. The documentation also considers
+                        Decision Tree and Logistic Regression as baselines.
+                      </p>
+                      <p className="mt-3">
+                        Comparison should account for missed attacks, false alarms and computational
+                        cost—not just the highest overall accuracy.
+                      </p>
+                    </div>
+                    <div className="ddos-detail-panel">
+                      <h4>How evaluation is interpreted</h4>
+                      <dl className="ddos-metrics">
+                        <div><dt>Precision</dt><dd>How many flagged flows are actually attacks?</dd></div>
+                        <div><dt>Recall</dt><dd>How many labelled attacks does the classifier detect?</dd></div>
+                        <div><dt>F1-score</dt><dd>A combined view of precision and recall.</dd></div>
+                        <div><dt>Confusion matrix</dt><dd>Shows correct predictions, false alarms and missed attacks by class.</dd></div>
+                      </dl>
+                    </div>
+                    <div className="ddos-detail-panel">
+                      <h4>What SHAP adds</h4>
+                      <p>
+                        Global explanations summarise which features most influence the model across
+                        the dataset. Local explanations break down an individual prediction into
+                        feature contributions, showing what pushed it toward or away from a class.
+                      </p>
+                      <p className="mt-3">
+                        Summary and force plots make those contributions easier to inspect.
+                        These explanations describe model behaviour; they do not prove that a feature
+                        caused an attack or that every alert is correct.
+                      </p>
+                    </div>
+                    <div className="ddos-detail-panel">
+                      <h4>Engineering considerations</h4>
+                      <ul>
+                        <li>Class imbalance can hide weak attack detection behind strong overall accuracy.</li>
+                        <li>Large ARFF files require attention to memory use during loading and preprocessing.</li>
+                        <li>SHAP analysis adds computation, so explanation cost matters alongside prediction speed.</li>
+                      </ul>
+                    </div>
+                    <div className="ddos-detail-panel">
+                      <h4>Limitations &amp; future scope</h4>
+                      <p>
+                        Performance on a labelled dataset does not guarantee the same results on a
+                        live network or unseen attack patterns.
+                      </p>
+                      <p className="mt-3">
+                        Potential next steps include live-flow ingestion, drift monitoring,
+                        an analyst dashboard and validation on additional datasets.
+                        These are future extensions, not claims of deployed functionality.
+                      </p>
+                    </div>
+                  </div>
+                </section>
+
                 <a
                   href={DDOS_GITHUB_URL}
                   target="_blank"
