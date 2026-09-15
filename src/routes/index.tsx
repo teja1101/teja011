@@ -5,8 +5,6 @@ import { ComponentTreeDiagram } from "@/components/diagrams";
 
 const GITHUB_URL = "https://github.com/teja1101/smartgrieve";
 
-
-
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
@@ -85,16 +83,12 @@ const buildPrinciples = [
   { n: "04", t: "Fast by default", d: "Lazy images, code-split routes and no blocking work on first paint." },
 ];
 
-
-
 const projectStats = [
   { k: "92.4%", v: "classification accuracy" },
   { k: "6", v: "departments routed" },
   { k: "3", v: "user roles" },
   { k: "<2s", v: "complaint to routing" },
 ];
-
-
 
 const education = [
   { years: "2022–26", title: "B.Tech — Computer Science and Engineering (CSE)", note: "Usha Rama College of Engineering and Technology" },
@@ -114,7 +108,6 @@ function Index() {
   return (
     <div className="portfolio-shell min-h-screen bg-paper text-ink font-sans">
       <div className="scroll-progress" aria-hidden="true" />
-      {/* AVAILABILITY BANNER */}
       <div className="bg-lime text-ink">
         <div className="mx-auto max-w-6xl px-5 sm:px-8 py-2 flex items-center justify-center gap-2 font-mono text-[11px] uppercase tracking-[0.18em]">
           <span className="relative flex size-2">
@@ -125,7 +118,6 @@ function Index() {
         </div>
       </div>
 
-      {/* NAV */}
       <div className="border-b border-ink/10">
         <div className="mx-auto max-w-6xl px-5 sm:px-8 py-4 flex items-center justify-between">
           <span className="font-display text-lg font-semibold tracking-tight">
@@ -147,7 +139,6 @@ function Index() {
         </div>
       </div>
 
-      {/* HERO */}
       <div className="hero-section border-b border-ink/10">
         <div className="mx-auto max-w-6xl px-5 sm:px-8 py-14 sm:py-20 grid lg:grid-cols-12 gap-10">
           <div className="lg:col-span-7">
@@ -232,7 +223,6 @@ function Index() {
         </div>
       </div>
 
-      {/* OBJECTIVE */}
       <div className="border-b border-ink/10">
         <div className="mx-auto max-w-6xl px-5 sm:px-8 py-14 grid lg:grid-cols-12 gap-8">
           <div className="lg:col-span-3">
@@ -262,7 +252,6 @@ function Index() {
         </div>
       </div>
 
-      {/* SKILLS */}
       <div id="skills" className="border-b border-ink/10">
         <div className="mx-auto max-w-6xl px-5 sm:px-8 py-14">
           <div className="flex items-baseline justify-between mb-8">
@@ -290,7 +279,6 @@ function Index() {
         </div>
       </div>
 
-      {/* FRONT-END CRAFT */}
       <div id="frontend" className="border-b border-ink/10">
         <div className="mx-auto max-w-6xl px-5 sm:px-8 py-14">
           <div className="flex items-baseline justify-between mb-8">
@@ -337,7 +325,6 @@ function Index() {
         </div>
       </div>
 
-      {/* EXPERIENCE + PROJECT */}
       <div id="exp" className="border-b border-ink/10">
         <div className="mx-auto max-w-6xl px-5 sm:px-8 py-14 grid lg:grid-cols-12 gap-10">
           <div className="lg:col-span-12 max-w-3xl">
@@ -354,8 +341,6 @@ function Index() {
               </p>
             </div>
           </div>
-
-
         </div>
       </div>
 
@@ -395,7 +380,6 @@ function Index() {
         </div>
       </section>
 
-      {/* EDUCATION + CERTS */}
       <div className="border-b border-ink/10">
         <div className="mx-auto max-w-6xl px-5 sm:px-8 py-14 grid lg:grid-cols-12 gap-10">
           <div className="lg:col-span-6">
@@ -443,7 +427,6 @@ function Index() {
         </div>
       </div>
 
-      {/* CONTACT */}
       <div id="contact" className="bg-ink text-paper">
         <div className="mx-auto max-w-6xl px-5 sm:px-8 py-16 sm:py-20 text-center">
           <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-paper/50 mb-5">
