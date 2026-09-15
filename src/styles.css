@@ -58,7 +58,7 @@
 :root {
   --radius: 0.625rem;
 
-  /* Midnight + violet + cyan portfolio palette */
+  
   --ink: oklch(0.965 0.006 275);
   --paper: oklch(0.965 0.006 275);
   --paper-dim: oklch(0.16 0.025 275);
@@ -145,7 +145,7 @@
   }
 }
 
-/* Preserve the existing layout while translating light tokens into black surfaces. */
+
 .bg-paper {
   background-color: oklch(0.14 0.025 275) !important;
 }
@@ -186,24 +186,24 @@
   background-color: oklch(0.72 0.16 285) !important;
 }
 
-/* Accent badges/buttons remain readable on black. */
+
 .bg-lime.text-ink {
   color: oklch(0.14 0.025 275) !important;
 }
 
-/* Availability strip becomes a black-to-violet neon bar. */
+
 .min-h-screen > .bg-lime.text-ink {
   background: linear-gradient(90deg, oklch(0.14 0.025 275), oklch(0.19 0.07 285), oklch(0.14 0.025 275)) !important;
   color: oklch(0.94 0.04 285) !important;
   border-bottom: 1px solid oklch(0.78 0.16 285 / 0.18);
 }
 
-/* Hide the technology pill blocks under the hero introduction. */
+
 .lg\:col-span-7 > .mt-6.flex.flex-wrap.gap-2.font-mono.text-\[11px\] {
   display: none;
 }
 
-/* Black canvas with violet technical graphics. */
+
 .min-h-screen.bg-paper.text-ink.font-sans {
   background-color: oklch(0.14 0.025 275);
   background-image:
@@ -216,7 +216,7 @@
   background-position: center;
 }
 
-/* Feature panels get a subtle violet glow + technical texture. */
+
 .bg-ink.text-paper {
   background-image:
     radial-gradient(circle at 90% 10%, oklch(0.78 0.16 285 / 0.10), transparent 34%),
@@ -225,7 +225,7 @@
   box-shadow: 0 24px 60px oklch(0 0 0 / 0.42), 0 0 50px oklch(0.78 0.16 285 / 0.035);
 }
 
-/* Accent card interaction. */
+
 .bg-paper-dim {
   transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
 }
@@ -236,7 +236,7 @@
   box-shadow: 0 14px 34px oklch(0 0 0 / 0.34), 0 0 28px oklch(0.78 0.16 285 / 0.04);
 }
 
-/* Accent focus styling for links and buttons. */
+
 a:focus-visible,
 button:focus-visible {
   outline: 2px solid var(--brand);
@@ -258,9 +258,9 @@ img {
   }
 }
 
-/* -------------------------------------------------------------------------- */
-/* UI / UX refinement layer                                                   */
-/* -------------------------------------------------------------------------- */
+
+
+
 
 html {
   scroll-padding-top: 6.5rem;
@@ -280,7 +280,7 @@ body {
   color: var(--foreground);
 }
 
-/* Restore hierarchy that was lost when all opacity text became fully bright. */
+
 .text-ink\/40 { color: oklch(0.965 0.006 275 / 0.48) !important; }
 .text-ink\/50 { color: oklch(0.965 0.006 275 / 0.60) !important; }
 .text-ink\/60 { color: oklch(0.965 0.006 275 / 0.68) !important; }
@@ -290,7 +290,7 @@ body {
 .text-paper\/60 { color: oklch(0.965 0.006 275 / 0.68) !important; }
 .text-paper\/70 { color: oklch(0.965 0.006 275 / 0.78) !important; }
 
-/* Keep important destinations visible after smooth-scroll navigation. */
+
 #work,
 #frontend,
 #skills,
@@ -299,7 +299,7 @@ body {
   scroll-margin-top: 6.5rem;
 }
 
-/* Sticky translucent navigation improves orientation on long case-study pages. */
+
 .min-h-screen.bg-paper.text-ink.font-sans > .border-b:nth-child(2) {
   position: sticky;
   top: 0;
@@ -340,7 +340,7 @@ body {
   right: 0;
 }
 
-/* Give the hero a clearer CTA hierarchy and comfortable touch targets. */
+
 .min-h-screen.bg-paper.text-ink.font-sans > .border-b:nth-child(3) h1 {
   letter-spacing: -0.045em;
 }
@@ -371,7 +371,7 @@ body {
   color: oklch(0.965 0.006 275 / 0.72);
 }
 
-/* Clear, consistent interactive affordances. */
+
 a,
 button {
   -webkit-tap-highlight-color: transparent;
@@ -385,7 +385,7 @@ button:focus-visible {
   border-radius: 0.45rem;
 }
 
-/* Floating LinkedIn action now belongs to the midnight + violet + cyan visual system. */
+
 a[aria-label*="LinkedIn"] {
   bottom: calc(1rem + env(safe-area-inset-bottom));
   right: 1rem;
@@ -405,13 +405,13 @@ a[aria-label*="LinkedIn"] > span:first-child {
   color: oklch(0.14 0.025 275) !important;
 }
 
-/* Keep image behavior predictable and avoid layout overflow. */
+
 img {
   max-width: 100%;
   height: auto;
 }
 
-/* Only use hover elevation on devices that actually have a hover pointer. */
+
 @media (hover: none) {
   .bg-paper-dim:hover {
     transform: none;
@@ -419,7 +419,7 @@ img {
   }
 }
 
-/* Mobile navigation remains available instead of disappearing completely. */
+
 @media (max-width: 767px) {
   html {
     scroll-padding-top: 9.5rem;
@@ -483,7 +483,7 @@ img {
   }
 }
 
-/* Respect accessibility preferences and reduce distracting motion. */
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -500,9 +500,9 @@ img {
 }
 
 
-/* -------------------------------------------------------------------------- */
-/* Motion and portfolio polish                                                */
-/* -------------------------------------------------------------------------- */
+
+
+
 
 .portfolio-shell {
   position: relative;
@@ -808,7 +808,7 @@ img {
   border-color: var(--lime);
 }
 
-/* Scroll-entry motion is progressive enhancement; content stays visible elsewhere. */
+
 @supports (animation-timeline: view()) {
   .portfolio-shell > .border-b:not(:nth-child(2)),
   .portfolio-shell > #contact {
@@ -982,7 +982,7 @@ img {
 }
 
 
-/* Midnight Aurora: cohesive violet/cyan color treatment, existing layout retained. */
+
 .hero-section h1 {
   background-image: linear-gradient(105deg, #f4f3ff 0%, #c4b5fd 44%, #67e8f9 78%, #f4f3ff 100%);
 }
@@ -1010,7 +1010,7 @@ img {
 }
 
 
-/* Spatial interface: CSS-only depth, no extra downloads or rendering library. */
+
 .hero-section [class~="lg:col-span-5"] {
   perspective: 1200px;
   padding-block: 1rem;
@@ -1142,7 +1142,7 @@ img {
   }
 }
 
-/* DDoS technical deep-dive and layered pipeline. */
+
 .ddos-deep-dive { margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid rgba(196,181,253,.2); }
 .ddos-depth-layout { display: grid; gap: 2rem; margin-top: 1.5rem; }
 .ddos-depth-stack { display: grid; gap: 1.3rem; perspective: 1000px; list-style: none; padding: 1rem .6rem 1.5rem; margin: 0; }
@@ -1181,7 +1181,7 @@ img {
   .ddos-depth-stack li { transform: none; margin-left: 0 !important; }
 }
 
-/* SMART-GRIEV diagrams: real text, layered planes and explicit connectors. */
+
 .sg-diagram { margin: 0; padding: 1.1rem .7rem 1.5rem; color: #eef2ff; perspective: 1100px; }
 .sg-diagram figcaption { font-family: var(--font-mono); font-size: .75rem; color: #c4b5fd; letter-spacing: .1em; margin-bottom: 1.5rem; text-transform: uppercase; }
 .sg-plane {
@@ -1221,7 +1221,7 @@ img {
   .sg-plane, .sg-plane:hover { transform:none !important; transition:none !important; }
 }
 
-/* User-controlled 3D diagrams: touch scrolling stays enabled by default. */
+
 .sg-interactive-help { font-size:.875rem; line-height:1.65; color:#cbd5e1; margin-bottom:1rem; }
 .sg-model-controls { display:flex; flex-wrap:wrap; align-items:center; gap:.5rem; margin-bottom:1rem; }
 .sg-model-controls button {
@@ -1268,7 +1268,7 @@ img {
   .sg-model-scene .sg-model-node { transition:none !important; }
 }
 
-/* Editorial project gallery and dedicated case studies. */
+
 .case-eyebrow { font:500 .75rem/1.6 var(--font-mono); letter-spacing:.12em; text-transform:uppercase; color:#a5b4fc; }
 .featured-work-heading { margin-bottom:2.5rem; }
 .featured-work-heading h2 { font-family:var(--font-display); font-size:clamp(2.5rem,6vw,4.5rem); line-height:1.05; letter-spacing:-.055em; margin:.8rem 0 1rem; }
@@ -1349,7 +1349,7 @@ img {
   .case-page .sg-model-controls { gap:.35rem; }
 }
 
-/* Complete case-study narrative: responsive maps, evidence and design artifacts. */
+
 .study-section { padding:3.5rem 0; border-bottom:1px solid #ffffff20; scroll-margin-top:2rem; }
 .study-section > header { margin-bottom:2rem; }
 .study-section h2 { font:500 clamp(1.8rem,4vw,2.8rem)/1.15 var(--font-display); letter-spacing:-.03em; margin:.75rem 0 1rem; }
